@@ -7,7 +7,6 @@ export function ColorBar() {
         <span className="block w-[18px] h-[7px] bg-pyellow" />
         <span className="block w-[18px] h-[7px] bg-navy" />
       </div>
-      <span className="font-mono text-[10px] tracking-[0.3em] text-navy/40">C&nbsp;&nbsp;M&nbsp;&nbsp;Y&nbsp;&nbsp;K</span>
     </div>
   )
 }

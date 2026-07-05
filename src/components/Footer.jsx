@@ -6,7 +6,7 @@ export default function Footer() {
 
           <div>
             {/* White pill behind logo so dark text is visible on dark footer */}
-            <div className="inline-block bg-white rounded-xl px-4 py-2 mb-5">
+            <div className="inline-block rounded-xl px-4 py-2 mb-5">
               <img src="logo.png" alt="Mahajana Printers" className="h-10 w-auto" />
             </div>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">

@@ -7,9 +7,10 @@ import Facilities from './components/Facilities'
 import Journey    from './components/Journey'
 import WhyUs      from './components/WhyUs'
 import Products   from './components/Products'
-import Clients    from './components/Clients'
+import Clients    from './components/Map'
 import Footer     from './components/Footer'
 import { ColorBar } from './components/UI'
+import MissionVision from './components/MissionVision'
 
 export default function App() {
   useReveal()
@@ -19,6 +20,7 @@ export default function App() {
       <Hero />
       <ColorBar />
       <About />
+      <MissionVision />
       <Facilities />
       <Journey />
       <WhyUs />

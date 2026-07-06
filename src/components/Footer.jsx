@@ -41,7 +41,7 @@ export default function Footer() {
           <div>
             <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-white/50">Quick Links</span>
             <ul className="mt-5 grid grid-cols-2 md:grid-cols-1 gap-y-3 gap-x-4 text-sm text-white/70">
-              {['About','Facilities','Journey','Why Us','Products','Clients'].map(l => (
+              {['About','Facilities','Journey','Why Us','Products','Map'].map(l => (
                 <li key={l}>
                   <a href={`#${l.toLowerCase().replace(' ','-')}`} className="hover:text-pyellow transition-colors">{l}</a>
                 </li>

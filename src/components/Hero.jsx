@@ -95,7 +95,7 @@ export default function Hero() {
             className={`flex gap-3 hero-reveal${visible ? ' play' : ''}`}
             style={{ animationDelay: '1.8s' }}
           >
-            <a href="#contact" className="bg-pyellow text-navy font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-white transition-colors">
+            <a href="https://wa.me/94771324882" target="_blank" rel="noopener noreferrer" className="bg-pyellow text-navy font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-white transition-colors">
               Get A Quote
             </a>
             <a href="#about" className="border border-white/30 text-white/80 text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors">

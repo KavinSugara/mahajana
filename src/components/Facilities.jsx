@@ -1,39 +1,174 @@
-import { Placeholder, SectionLabel } from './UI'
+import { SectionLabel } from './UI'
 
 const processes = [
-  { num: '01', color: 'text-pmagenta', title: 'Printing',     img: 'image — offset press',        desc: 'High-performance offset machines handle both small and large-scale runs with precision, consistency and speed.' },
-  { num: '02', color: 'text-pmagenta', title: 'Die Cutting',  img: 'image — die-cutting machine', desc: 'Precision cutting and embossing with flat-bed and cylinder die-cutting machines.' },
-  { num: '03', color: 'text-pmagenta', title: 'Pasting',      img: 'image — pasting line',        desc: 'High-speed pasting machines assemble folding cartons and boxes automatically.' },
-  { num: '04', color: 'text-pcyan',   title: 'Lamination',   img: 'image — lamination machine',  desc: 'A protective gloss or matte layer that adds durability and elevates the finish of your printed materials.' },
-  { num: '05', color: 'text-pcyan',   title: 'Foiling',      img: 'image — foiled sample',       desc: 'Metallic foils add a reflective, eye-catching finish — ideal for luxury packaging.' },
-  { num: '06', color: 'text-pcyan',   title: 'Design House', img: 'image — design team at work', desc: 'Fully equipped with Adobe Illustrator, Photoshop and InDesign — our team helps you design from scratch.' },
+  { num: '01', accent: '#EC008C', accentClass: 'text-pmagenta', title: 'Printing',     img: 'offset_printing.png',    desc: 'High-performance offset machines handle both small and large-scale runs with precision, consistency and speed.' },
+  { num: '02', accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Die Cutting',  img: 'diecutting.png',         desc: 'Precision cutting and embossing with flat-bed and cylinder die-cutting machines.' },
+  { num: '03', accent: '#FFD200', accentClass: 'text-pyellow',  title: 'Pasting',      img: 'offset_pasting.jpeg',    desc: 'High-speed pasting machines assemble folding cartons and boxes automatically.' },
+  { num: '04', accent: '#EC008C', accentClass: 'text-pmagenta', title: 'Lamination',   img: 'offset_lamination.jpeg', desc: 'A protective gloss or matte layer that adds durability and elevates the finish of your printed materials.' },
+  { num: '05', accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Foiling',      img: 'offset_foiling.png',     desc: 'Metallic foils add a reflective, eye-catching finish — ideal for luxury packaging.' },
+  { num: '06', accent: '#FFD200', accentClass: 'text-pyellow',  title: 'Design House', img: 'design.png',             desc: 'Fully equipped with Adobe Illustrator, Photoshop and InDesign — our team helps you design from scratch.' },
+]
+
+const logos = [
+  { src: 'heidelberglogo.png', name: 'Heidelberg',     scale: 1.2 },
+  { src: 'agfalogo.png',       name: 'Agfa',           scale: 1 },
+  { src: 'polarlogo.png',      name: 'Polar',          scale: 1.6 },
+  { src: 'konicalogo.png',     name: 'Konica Minolta', scale: 1.5 },
+  { src: 'horizonlogo.png',    name: 'Horizon',        scale: 1 },
+  { src: 'iijimalogo.png',     name: 'Iijima',         scale: 1 },
 ]
 
 export default function Facilities() {
   return (
-    <section id="facilities" className="bg-white py-14 md:py-24">
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
+    <>
+      <style>{`
+        @keyframes facFloat {
+          0%, 100% { transform: translate(-50%,-50%) translateY(0); }
+          50%       { transform: translate(-50%,-50%) translateY(-16px); }
+        }
+        .fac-orb {
+          animation: facFloat var(--dur,7s) ease-in-out var(--delay,0s) infinite;
+        }
 
-        <div className="mb-10 md:mb-14 reveal">
-          <SectionLabel>In-House Capability</SectionLabel>
-          <h2 className="font-display text-2xl md:text-4xl text-navy leading-tight mb-3">Six processes. One roof.</h2>
-          <p className="text-ink/70 text-sm md:text-base leading-relaxed max-w-xl">Every stage of production — from pre-press to the final finish — happens inside our own plants.</p>
-        </div>
+        /* Card: gentle lift + shadow bloom + accent border reveal */
+        .fac-card {
+          transition: transform 0.4s cubic-bezier(0.22,1,0.36,1),
+                      box-shadow 0.4s cubic-bezier(0.22,1,0.36,1);
+          border: 1px solid #e8e0d0;
+        }
+        .fac-card:hover {
+          transform: translateY(-7px);
+          box-shadow: 0 20px 48px rgba(14,26,48,0.11), 0 4px 12px rgba(14,26,48,0.06) !important;
+        }
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {processes.map(({ num, color, title, img, desc }) => (
-            <div key={num} className="reveal rounded-2xl border border-navy/10 overflow-hidden">
-              <Placeholder label={img} className="aspect-[16/9] rounded-none border-0 border-b border-navy/10" />
-              <div className="p-5 md:p-6">
-                <span className={`font-mono text-[10px] tracking-[0.2em] ${color}`}>PROCESS {num}</span>
-                <h3 className="font-display text-base md:text-lg text-navy mt-1.5 mb-1.5">{title}</h3>
-                <p className="text-sm text-ink/70 leading-relaxed">{desc}</p>
-              </div>
-            </div>
+        /* Image: very subtle zoom only */
+        .fac-card-img {
+          transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+        }
+        .fac-card:hover .fac-card-img {
+          transform: scale(1.04);
+        }
+
+        /* Accent bar: grows from left on hover */
+        .fac-bar {
+          transform-origin: left;
+          transform: scaleX(1);
+          transition: opacity 0.4s;
+        }
+        .fac-card:hover .fac-bar {
+          opacity: 0.9;
+        }
+
+        /* Logo cards */
+        .fac-logo {
+          transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+                      box-shadow 0.35s,
+                      border-color 0.35s;
+          border: 1px solid #e8e0d0;
+        }
+        .fac-logo:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 14px 32px rgba(14,26,48,0.09) !important;
+          border-color: rgba(14,26,48,0.18);
+        }
+      `}</style>
+
+      <section id="facilities" className="relative py-14 md:py-24 overflow-hidden" style={{ background: '#F7F3EA' }}>
+
+        {/* Floating colour orbs */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          {[
+            { top: '5%',  left: '5%',  size: 340, color: '#00AEEF', opacity: 0.09, delay: '0s',   dur: '7s'   },
+            { top: '10%', left: '82%', size: 280, color: '#EC008C', opacity: 0.08, delay: '1.5s', dur: '8.5s' },
+            { top: '50%', left: '90%', size: 300, color: '#FFD200', opacity: 0.09, delay: '0.8s', dur: '6.5s' },
+            { top: '65%', left: '3%',  size: 260, color: '#EC008C', opacity: 0.07, delay: '2s',   dur: '7.5s' },
+            { top: '85%', left: '52%', size: 220, color: '#00AEEF', opacity: 0.08, delay: '1s',   dur: '9s'   },
+            { top: '35%', left: '45%', size: 180, color: '#FFD200', opacity: 0.06, delay: '3s',   dur: '8s'   },
+          ].map((d, i) => (
+            <div key={i} className="fac-orb absolute rounded-full"
+              style={{
+                top: d.top, left: d.left,
+                width: d.size, height: d.size,
+                background: d.color,
+                opacity: d.opacity,
+                filter: 'blur(75px)',
+                transform: 'translate(-50%,-50%)',
+                '--delay': d.delay,
+                '--dur': d.dur,
+              }}
+            />
           ))}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.045]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="fac-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+                <circle cx="1" cy="1" r="1" fill="#0E1A30" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#fac-dots)" />
+          </svg>
         </div>
 
-      </div>
-    </section>
+        <div className="relative max-w-7xl mx-auto px-5 md:px-8">
+
+          {/* Header */}
+          <div className="mb-10 md:mb-14 reveal">
+            <SectionLabel>In-House Capability</SectionLabel>
+            <h2 className="font-display text-2xl md:text-4xl text-navy leading-tight mb-3">One Sheet of Paper. Infinite Possibilities. One roof.</h2>
+            <p className="text-ink/70 text-sm md:text-base leading-relaxed max-w-xl">
+              From raw materials ro retail-ready product, we handle every single step of the journey in-house to guarantee unmatched quality.
+            </p>
+          </div>
+
+          {/* Process cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-20">
+            {processes.map(({ num, accent, accentClass, title, img, desc }) => (
+              <div
+                key={num}
+                className="fac-card reveal rounded-2xl overflow-hidden relative bg-white"
+                style={{
+                  '--card-accent': accent,
+                  boxShadow: '0 2px 12px rgba(14,26,48,0.06)',
+                }}
+              >
+                {/* Image */}
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <div className="fac-bar absolute top-0 left-0 right-0 h-[3px] z-10" style={{ background: accent }} />
+                  <img src={img} alt={title} className="fac-card-img w-full h-full object-cover" />
+                  <div className="absolute bottom-0 left-0 right-0 h-10 z-[2]"
+                    style={{ background: 'linear-gradient(to bottom, transparent, #ffffff)' }} />
+                </div>
+
+                {/* Body */}
+                <div className="p-5 md:p-6">
+                  <span className={`font-mono text-[10px] tracking-[0.2em] ${accentClass}`}>PROCESS {num}</span>
+                  <h3 className="font-display text-base md:text-lg text-navy mt-1.5 mb-2">{title}</h3>
+                  <p className="text-sm text-ink/60 leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Brand logos */}
+          <div className="reveal">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="flex-1 h-px bg-navy/10" />
+              <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-navy/40 flex-none">
+                Powered by world-class machinery
+              </span>
+              <div className="flex-1 h-px bg-navy/10" />
+            </div>
+            <div className="flex items-center justify-between gap-4 md:gap-6 flex-wrap md:flex-nowrap">
+              {logos.map(({ src, name, scale }) => (
+                <div key={src} className="fac-logo flex-1 min-w-[140px] rounded-2xl bg-white flex items-center justify-center px-4 py-3 overflow-hidden"
+                  style={{ boxShadow: '0 2px 12px rgba(14,26,48,0.06)', height: '160px' }}>
+                  <img src={src} alt={name} className="w-auto object-contain" style={{ maxHeight: '120px', maxWidth: '100%', transform: `scale(${scale || 1})` }} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </>
   )
 }

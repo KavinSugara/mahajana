@@ -1,4 +1,11 @@
-import { Placeholder, SectionLabel } from './UI'
+import { SectionLabel } from './UI'
+
+// These live in /public, so Vite serves them straight from the root —
+// no import needed, just reference the path as a string.
+const packagingImg = '/packaging.png'
+const cartonImg = '/carton.png'
+const letterheadImg = '/letterhead.png'
+const giftImg = '/gift.png'
 
 const products = [
   'Packaging Boxes','Cartons','Bags','Visiting Cards','Gift Vouchers','Stickers',
@@ -6,11 +13,14 @@ const products = [
   'Letterheads','Files / Dockets','Takeaway Boxes','Calendars',
 ]
 
+// Each sample is tagged with one of the brand's four print colors (see the
+// CMYK dots in the footer) — a small thread that ties this grid back to the
+// press itself: cyan / magenta / yellow / key(navy).
 const samples = [
-  'image — packaging sample',
-  'image — carton sample',
-  'image — stationery sample',
-  'image — gift / retail sample',
+  { img: packagingImg, label: 'Packaging', sub: 'Boxes, cartons & retail packs', dot: '#00AEEF' },
+  { img: cartonImg, label: 'Cartons', sub: 'Mailer & product cartons', dot: '#EC008C' },
+  { img: letterheadImg, label: 'Stationery', sub: 'Letterheads & corporate ID', dot: '#FFD400' },
+  { img: giftImg, label: 'Gift & Retail', sub: 'Bags, tags & vouchers', dot: '#0A1A3C' },
 ]
 
 export default function Products() {
@@ -21,18 +31,48 @@ export default function Products() {
         <div className="mb-8 md:mb-12 reveal">
           <SectionLabel>What We Print</SectionLabel>
           <h2 className="font-display text-2xl md:text-4xl text-navy leading-tight mb-3">A full range,<br />printed to order.</h2>
-          <p className="text-ink/70 text-sm md:text-base leading-relaxed">From packaging boxes to letterheads — if it's printed, there's a good chance we can make it.</p>
+          <p className="text-ink/70 text-sm md:text-base leading-relaxed max-w-xl">From packaging boxes to letterheads — if it's printed, there's a good chance we can make it.</p>
         </div>
 
         <div className="flex flex-wrap gap-2 md:gap-3 mb-10 md:mb-14 reveal">
           {products.map(p => (
-            <span key={p} className="px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-navy/15 text-xs md:text-sm text-navy/80 font-medium">{p}</span>
+            <span
+              key={p}
+              className="px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-navy/15 text-xs md:text-sm text-navy/80 font-medium transition-colors hover:border-navy/40 hover:bg-navy/[0.03] cursor-default"
+            >
+              {p}
+            </span>
           ))}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
           {samples.map(s => (
-            <Placeholder key={s} label={s} className="reveal aspect-square" />
+            <figure
+              key={s.label}
+              className="reveal group relative aspect-square rounded-2xl overflow-hidden bg-navy/[0.03] border border-navy/10 shadow-sm hover:shadow-lg transition-shadow duration-300"
+            >
+              <img
+                src={s.img}
+                alt={s.label}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                loading="lazy"
+              />
+
+              {/* gradient scrim so the caption stays legible over any photo */}
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/0 to-navy/0" />
+
+              {/* press-color dot: ties each sample back to the CMYK marks in the footer */}
+              <span
+                className="absolute top-3 right-3 h-2.5 w-2.5 rounded-full ring-2 ring-white/70"
+                style={{ backgroundColor: s.dot }}
+                aria-hidden="true"
+              />
+
+              <figcaption className="absolute inset-x-0 bottom-0 p-3 md:p-4">
+                <div className="text-white font-display text-sm md:text-base leading-tight">{s.label}</div>
+                <div className="text-white/75 text-[11px] md:text-xs mt-0.5">{s.sub}</div>
+              </figcaption>
+            </figure>
           ))}
         </div>
 

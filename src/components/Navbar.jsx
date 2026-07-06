@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const links = ['About', 'Facilities', 'Journey', 'Why Us', 'Products', 'Visit Us']
+const links = ['About', 'Facilities', 'Journey', 'Why Us', 'Products', 'Map']
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -54,7 +54,9 @@ export default function Navbar() {
         {/* CTA + mobile toggle */}
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
+            href="https://wa.me/94771324882"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group hidden lg:inline-flex items-center gap-2 bg-pyellow text-navy font-bold text-sm
                        px-6 py-2.5 rounded-full transition-all duration-300
                        hover:gap-3 hover:shadow-[0_10px_24px_-6px_rgba(255,210,0,0.55)] hover:brightness-105
@@ -106,7 +108,9 @@ export default function Navbar() {
           </a>
         ))}
         <a
-          href="#contact"
+          href="https://wa.me/94771324882"
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={() => setOpen(false)}
           className="mt-8 bg-pyellow text-navy font-bold text-base px-6 py-3.5 rounded-full text-center
                      transition-transform duration-200 active:scale-95"

@@ -1,4 +1,4 @@
-export default function Clients() {
+export default function Map() {
   return (
     <>
       <style>{`

@@ -43,7 +43,11 @@ export default function Hero() {
         <video
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: 1 }}
-          autoPlay muted loop playsInline
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
         >
           <source src={videoBg} type="video/mp4" />
         </video>

@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import videoBg from "../assets/cover.mp4";
 
 export default function Hero() {
   const [visible, setVisible] = useState(false);
@@ -44,7 +45,7 @@ export default function Hero() {
           style={{ zIndex: 1 }}
           autoPlay muted loop playsInline
         >
-          <source src="cover.mp4" type="video/mp4" />
+          <source src={videoBg} type="video/mp4" />
         </video>
 
         <div

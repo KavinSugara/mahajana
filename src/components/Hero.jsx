@@ -169,22 +169,17 @@ export default function Hero() {
             )}
 
             <div className="flex gap-3">
-              <div className="flex items-stretch rounded-full bg-pyellow overflow-hidden">
-                <a
-                  href={quoteLink}
-                  target={channel === "whatsapp" ? "_blank" : undefined}
-                  rel={channel === "whatsapp" ? "noopener noreferrer" : undefined}
-                  className="text-navy font-semibold text-sm pl-5 pr-3 py-2.5 hover:bg-white transition-colors"
-                >
+              <button
+                type="button"
+                onClick={() => setDropdownOpen((o) => !o)}
+                aria-label="Choose contact method"
+                aria-expanded={dropdownOpen}
+                className="flex items-stretch rounded-full bg-pyellow overflow-hidden hover:bg-white transition-colors"
+              >
+                <span className="text-navy font-semibold text-sm pl-5 pr-3 py-2.5">
                   Get A Quote
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setDropdownOpen((o) => !o)}
-                  aria-label="Choose contact method"
-                  aria-expanded={dropdownOpen}
-                  className="pl-2 pr-4 py-2.5 border-l border-navy/15 text-navy hover:bg-white transition-colors flex items-center"
-                >
+                </span>
+                <span className="pl-2 pr-4 py-2.5 border-l border-navy/15 text-navy flex items-center">
                   <svg
                     width="10"
                     height="6"
@@ -194,8 +189,8 @@ export default function Hero() {
                   >
                     <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </button>
-              </div>
+                </span>
+              </button>
 
               <a href="#about" className="border border-white/30 text-white/80 text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors">
                 Learn More

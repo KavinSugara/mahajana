@@ -1,10 +1,53 @@
 import { useEffect, useState, useRef } from "react";
 import videoBg from "../assets/cover.mp4";
 
+const quoteMessage = `Hello Mahajana Printers, I'd like to request a quote:
+
+*Item:* (e.g. Invoice Book, Poster, Leaflets, Boxes, Calendars, Label, Tags)
+
+
+*Size:* (A/B size or dimensions)
+
+
+*Quantity:*
+
+
+*Printed Colours:* (e.g. 01 / 02 / 03 / 04)
+
+
+*Name & Phone Number:*
+
+
+*Email:*
+`;
+
+const whatsappQuoteLink = `https://wa.me/94771324882?text=${encodeURIComponent(quoteMessage)}`;
+
+const mailtoQuoteLink = `mailto:mahajanaprinters.lk@gmail.com?subject=${encodeURIComponent(
+  "Quote Request"
+)}&body=${encodeURIComponent(quoteMessage)}`;
+
 export default function Hero() {
   const [visible, setVisible] = useState(false);
+  const [channel, setChannel] = useState("whatsapp");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const sectionRef = useRef(null);
   const wasVisible = useRef(false);
+  const quoteMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (quoteMenuRef.current && !quoteMenuRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -22,6 +65,8 @@ export default function Hero() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  const quoteLink = channel === "whatsapp" ? whatsappQuoteLink : mailtoQuoteLink;
 
   return (
     <>
@@ -97,15 +142,65 @@ export default function Hero() {
           </p>
 
           <div
-            className={`flex gap-3 hero-reveal${visible ? ' play' : ''}`}
+            ref={quoteMenuRef}
+            className={`hero-reveal${visible ? ' play' : ''}`}
             style={{ animationDelay: '1.8s' }}
           >
-            <a href="https://wa.me/94771324882" target="_blank" rel="noopener noreferrer" className="bg-pyellow text-navy font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-white transition-colors">
-              Get A Quote
-            </a>
-            <a href="#about" className="border border-white/30 text-white/80 text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors">
-              Learn More
-            </a>
+            {/* Dropdown options — in normal flow so they push content up */}
+            {dropdownOpen && (
+              <div className="mb-2 w-44 bg-white rounded-xl shadow-lg overflow-hidden">
+                <a
+                  href={whatsappQuoteLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => { setChannel("whatsapp"); setDropdownOpen(false); }}
+                  className="flex items-center gap-2 px-4 py-2.5 text-sm text-navy hover:bg-navy/5 transition-colors"
+                >
+                  WhatsApp
+                </a>
+                <a
+                  href={mailtoQuoteLink}
+                  onClick={() => { setChannel("email"); setDropdownOpen(false); }}
+                  className="flex items-center gap-2 px-4 py-2.5 text-sm text-navy hover:bg-navy/5 transition-colors border-t border-navy/10"
+                >
+                  Email
+                </a>
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <div className="flex items-stretch rounded-full bg-pyellow overflow-hidden">
+                <a
+                  href={quoteLink}
+                  target={channel === "whatsapp" ? "_blank" : undefined}
+                  rel={channel === "whatsapp" ? "noopener noreferrer" : undefined}
+                  className="text-navy font-semibold text-sm pl-5 pr-3 py-2.5 hover:bg-white transition-colors"
+                >
+                  Get A Quote
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setDropdownOpen((o) => !o)}
+                  aria-label="Choose contact method"
+                  aria-expanded={dropdownOpen}
+                  className="pl-2 pr-4 py-2.5 border-l border-navy/15 text-navy hover:bg-white transition-colors flex items-center"
+                >
+                  <svg
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    className={`transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
+                  >
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+
+              <a href="#about" className="border border-white/30 text-white/80 text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors">
+                Learn More
+              </a>
+            </div>
           </div>
         </div>
 

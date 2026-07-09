@@ -3,11 +3,12 @@ import { SectionLabel } from './UI'
 
 const milestones = [
   { num: '01', year: '1974', title: 'The Beginning',             desc: 'Established on family-owned land with a single machine and a clear vision for delivering quality printing excellence.',  accent: '#00AEEF' },
-  { num: '02', year: '2004', title: 'Full In-House Production',  desc: 'Achieved complete end-to-end production control, ensuring higher quality standards and faster turnaround for all clients.', accent: '#EC008C' },
-  { num: '03', year: '2010', title: 'Growing Capacity',          desc: 'Significantly grew operational capacity by investing in a vast fleet of high-performance offset printing machines.',       accent: '#FFD200' },
-  { num: '04', year: '2015', title: 'Second Facility',           desc: 'Opened a second fully-equipped facility in Mirigama to meet rising market demand and maximise efficiency.',                accent: '#00AEEF' },
-  { num: '05', year: '2022', title: '10+ Industries Nationwide', desc: 'Grew our expertise to provide trusted, customised packaging solutions for over 10 major industries across the country.',   accent: '#EC008C' },
-  { num: '06', year: '2025', title: 'Latest Technology',         desc: 'Purchased state-of-the-art machinery with updated automation for the highest level of precision and consistency.',         accent: '#FFD200' },
+  { num: '02', year: '1992', title: 'The Offset Era',            desc: 'Transitioned from traditional letterpress to modern offset printing, constructing a brand-new facility to accommodate increased capacity, the very site that remains the heart of our main operations today.', accent: '#EC008C' },
+  { num: '03', year: '2004', title: 'Full In-House Production',  desc: 'Achieved complete end-to-end production control, ensuring higher quality standards and faster turnaround for all clients.', accent: '#FFD200' },
+  { num: '04', year: '2010', title: 'Growing Capacity',          desc: 'Significantly grew operational capacity by investing in a vast fleet of high-performance offset printing machines.',       accent: '#00AEEF' },
+  { num: '05', year: '2015', title: 'Second Facility',           desc: 'Opened a second fully-equipped facility in Mirigama to meet rising market demand and maximise efficiency.',                accent: '#EC008C' },
+  { num: '06', year: '2022', title: '10+ Industries Nationwide', desc: 'Grew our expertise to provide trusted, customised packaging solutions for over 10 major industries across the country.',   accent: '#FFD200' },
+  { num: '07', year: '2025', title: 'Latest Technology',         desc: 'Purchased state-of-the-art machinery with updated automation for the highest level of precision and consistency.',         accent: '#00AEEF' },
 ]
 
 const glows = [
@@ -122,6 +123,7 @@ export default function Journey() {
         .jrn-visible .jrn-node-4 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 1.04s; }
         .jrn-visible .jrn-node-5 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 1.27s; }
         .jrn-visible .jrn-node-6 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 1.50s; }
+        .jrn-visible .jrn-node-7 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 1.73s; }
 
         .jrn-tick { transform-origin: top center; transform: scaleY(0); }
         .jrn-visible .jrn-tick-1 { animation: tickGrow 0.3s ease forwards 0.48s; }
@@ -130,6 +132,7 @@ export default function Journey() {
         .jrn-visible .jrn-tick-4 { animation: tickGrow 0.3s ease forwards 1.17s; }
         .jrn-visible .jrn-tick-5 { animation: tickGrow 0.3s ease forwards 1.40s; }
         .jrn-visible .jrn-tick-6 { animation: tickGrow 0.3s ease forwards 1.63s; }
+        .jrn-visible .jrn-tick-7 { animation: tickGrow 0.3s ease forwards 1.86s; }
 
         .jrn-card-above { opacity: 0; }
         .jrn-card-below { opacity: 0; }
@@ -139,6 +142,7 @@ export default function Journey() {
         .jrn-visible .jrn-card-below-2 { animation: cardDown 0.55s cubic-bezier(0.22,1,0.36,1) forwards 0.78s; }
         .jrn-visible .jrn-card-below-4 { animation: cardDown 0.55s cubic-bezier(0.22,1,0.36,1) forwards 1.24s; }
         .jrn-visible .jrn-card-below-6 { animation: cardDown 0.55s cubic-bezier(0.22,1,0.36,1) forwards 1.70s; }
+        .jrn-visible .jrn-card-above-7 { animation: cardUp 0.55s cubic-bezier(0.22,1,0.36,1) forwards 1.93s; }
 
         .jrn-year { opacity: 0; }
         .jrn-visible .jrn-year-1 { animation: yearFade 0.4s ease forwards 0.42s; }
@@ -147,6 +151,7 @@ export default function Journey() {
         .jrn-visible .jrn-year-4 { animation: yearFade 0.4s ease forwards 1.11s; }
         .jrn-visible .jrn-year-5 { animation: yearFade 0.4s ease forwards 1.34s; }
         .jrn-visible .jrn-year-6 { animation: yearFade 0.4s ease forwards 1.57s; }
+        .jrn-visible .jrn-year-7 { animation: yearFade 0.4s ease forwards 1.80s; }
 
         /* Hover: card lifts + glow blob pulses + shimmer sweeps */
         .jrn-card {
@@ -182,18 +187,18 @@ export default function Journey() {
         }
 
         /* Scale down the whole timeline on shorter viewports */
-        @media (max-height: 860px) and (min-width: 768px) {
-          .jrn-scale { zoom: 0.88; }
-        }
         @media (max-height: 760px) and (min-width: 768px) {
-          .jrn-scale { zoom: 0.78; }
+          .jrn-scale { zoom: 0.9; }
         }
         @media (max-height: 660px) and (min-width: 768px) {
-          .jrn-scale { zoom: 0.68; }
+          .jrn-scale { zoom: 0.8; }
+        }
+        @media (max-height: 580px) and (min-width: 768px) {
+          .jrn-scale { zoom: 0.7; }
         }
       `}</style>
 
-      <section ref={sectionRef} id="journey" className="relative py-10 md:py-12 overflow-hidden bg-white">
+      <section ref={sectionRef} id="journey" className="relative py-6 md:py-8 overflow-hidden bg-white">
 
         {/* Background */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -215,10 +220,10 @@ export default function Journey() {
           </svg>
         </div>
 
-        <div className="relative max-w-[90rem] mx-auto px-6 md:px-12">
+        <div className="relative max-w-[100rem] mx-auto px-6 md:px-8">
 
           {/* Header — title | paragraph + counter */}
-          <div className="mb-6 md:mb-8 reveal flex flex-col md:flex-row md:items-center md:gap-10">
+          <div className="mb-4 md:mb-5 reveal flex flex-col md:flex-row md:items-center md:gap-10">
 
             {/* Title + 50+ sign side by side on mobile */}
             <div className="flex-none flex items-start gap-4 md:block">
@@ -279,12 +284,12 @@ export default function Journey() {
           <div className={`hidden md:block jrn-scale${visible ? ' jrn-visible' : ''}`}>
             <div className="flex flex-col">
 
-              {/* TOP CARDS — cols 1, 3, 5 */}
-              <div className="grid grid-cols-6 gap-4 mb-0">
+              {/* TOP CARDS — cols 1, 3, 5, 7 */}
+              <div className="grid grid-cols-7 gap-3 mb-0">
                 {milestones.map((m, i) => {
                   const above = i % 2 === 0
                   return (
-                    <div key={m.num} className="flex flex-col justify-end" style={{ minHeight: 148 }}>
+                    <div key={m.num} className="flex flex-col justify-end" style={{ minHeight: 116 }}>
                       {above ? (
                         <div
                           className={`jrn-card jrn-card-above jrn-card-above-${i+1} relative rounded-2xl overflow-hidden cursor-default`}
@@ -312,21 +317,21 @@ export default function Journey() {
 
                           {/* Ghost year */}
                           <div className="absolute bottom-2 right-3 font-display font-bold leading-none select-none pointer-events-none"
-                            style={{ fontSize: 64, color: m.accent, opacity: hovered === i ? 0.13 : 0.07, transition: 'opacity 0.35s' }}>
+                            style={{ fontSize: 44, color: m.accent, opacity: hovered === i ? 0.13 : 0.07, transition: 'opacity 0.35s' }}>
                             {m.year}
                           </div>
 
-                          <div className="relative p-4 pb-5">
+                          <div className="relative p-3 pb-3">
                             {/* Number badge */}
-                            <div className="w-7 h-7 rounded-full flex items-center justify-center font-mono font-bold text-[10px] mb-2 border-2 flex-none"
+                            <div className="w-6 h-6 rounded-full flex items-center justify-center font-mono font-bold text-[9px] mb-1.5 border-2 flex-none"
                               style={{ borderColor: m.accent, color: m.accent }}>
                               {m.num}
                             </div>
-                            <h3 className="font-display text-base md:text-lg text-white leading-snug mb-1.5"
+                            <h3 className="font-display text-sm md:text-base text-white leading-snug mb-1"
                               style={{ transition: 'color 0.3s', color: hovered === i ? m.accent : 'white' }}>
                               {m.title}
                             </h3>
-                            <p className="text-sm text-white/55 leading-relaxed">{m.desc}</p>
+                            <p className="text-xs text-white/55 leading-snug">{m.desc}</p>
                           </div>
                         </div>
                       ) : (
@@ -338,12 +343,12 @@ export default function Journey() {
               </div>
 
               {/* SPINE ROW */}
-              <div className="relative flex items-center my-3">
+              <div className="relative flex items-center my-1.5">
                 {/* Gradient line */}
                 <div className="jrn-line absolute left-0 right-0 h-[3px] rounded-full"
                   style={{ background: 'linear-gradient(to right, #00AEEF 0%, #EC008C 42%, #FFD200 100%)' }} />
 
-                <div className="grid grid-cols-6 gap-4 w-full relative z-10">
+                <div className="grid grid-cols-7 gap-3 w-full relative z-10">
                   {milestones.map((m, i) => {
                     const above = i % 2 === 0
                     return (
@@ -351,13 +356,13 @@ export default function Journey() {
                         {/* Tick above (for above-cards) */}
                         {above && (
                           <div className={`jrn-tick jrn-tick-${i+1} w-[2px] mb-1`}
-                            style={{ height: 18, background: m.accent, opacity: 0.6, transformOrigin: 'bottom center' }} />
+                            style={{ height: 12, background: m.accent, opacity: 0.6, transformOrigin: 'bottom center' }} />
                         )}
 
                         {/* Node */}
                         <div
                           className={`jrn-node-wrap jrn-node jrn-node-${i+1} relative flex items-center justify-center cursor-default`}
-                          style={{ width: 52, height: 52 }}
+                          style={{ width: 42, height: 42 }}
                           onMouseEnter={() => setHovered(i)}
                           onMouseLeave={() => setHovered(null)}
                         >
@@ -365,7 +370,7 @@ export default function Journey() {
                           <div className="node-ring absolute inset-0 rounded-full"
                             style={{ background: m.accent, opacity: 0.2 }} />
                           {/* Main circle */}
-                          <div className="relative w-12 h-12 rounded-full flex items-center justify-center font-mono font-bold text-sm border-4 border-white z-10"
+                          <div className="relative w-9 h-9 rounded-full flex items-center justify-center font-mono font-bold text-xs border-[3px] border-white z-10"
                             style={{
                               background: m.accent,
                               color: '#0E1A30',
@@ -388,7 +393,7 @@ export default function Journey() {
                         {/* Tick below (for below-cards) */}
                         {!above && (
                           <div className={`jrn-tick jrn-tick-${i+1} w-[2px] mt-1`}
-                            style={{ height: 18, background: m.accent, opacity: 0.6 }} />
+                            style={{ height: 12, background: m.accent, opacity: 0.6 }} />
                         )}
                       </div>
                     )
@@ -397,11 +402,11 @@ export default function Journey() {
               </div>
 
               {/* BOTTOM CARDS — cols 2, 4, 6 */}
-              <div className="grid grid-cols-6 gap-4 mt-0">
+              <div className="grid grid-cols-7 gap-3 mt-0">
                 {milestones.map((m, i) => {
                   const below = i % 2 !== 0
                   return (
-                    <div key={m.num} style={{ minHeight: 148 }}>
+                    <div key={m.num} style={{ minHeight: 116 }}>
                       {below ? (
                         <div
                           className={`jrn-card jrn-card-below jrn-card-below-${i+1} relative rounded-2xl overflow-hidden cursor-default h-full`}
@@ -420,19 +425,19 @@ export default function Journey() {
                           <div className="card-glow absolute -top-8 -right-8 w-36 h-36 rounded-full blur-3xl"
                             style={{ background: m.accent, opacity: hovered === i ? 0.28 : 0.14 }} />
                           <div className="absolute bottom-2 right-3 font-display font-bold leading-none select-none pointer-events-none"
-                            style={{ fontSize: 64, color: m.accent, opacity: hovered === i ? 0.13 : 0.07, transition: 'opacity 0.35s' }}>
+                            style={{ fontSize: 44, color: m.accent, opacity: hovered === i ? 0.13 : 0.07, transition: 'opacity 0.35s' }}>
                             {m.year}
                           </div>
-                          <div className="relative p-4 pb-5">
-                            <div className="w-7 h-7 rounded-full flex items-center justify-center font-mono font-bold text-[10px] mb-2 border-2 flex-none"
+                          <div className="relative p-3 pb-3">
+                            <div className="w-6 h-6 rounded-full flex items-center justify-center font-mono font-bold text-[9px] mb-1.5 border-2 flex-none"
                               style={{ borderColor: m.accent, color: m.accent }}>
                               {m.num}
                             </div>
-                            <h3 className="font-display text-base md:text-lg text-white leading-snug mb-1.5"
+                            <h3 className="font-display text-sm md:text-base text-white leading-snug mb-1"
                               style={{ transition: 'color 0.3s', color: hovered === i ? m.accent : 'white' }}>
                               {m.title}
                             </h3>
-                            <p className="text-sm text-white/55 leading-relaxed">{m.desc}</p>
+                            <p className="text-xs text-white/55 leading-snug">{m.desc}</p>
                           </div>
                         </div>
                       ) : (

@@ -8,9 +8,9 @@ const letterheadImg = '/letterhead.png'
 const giftImg = '/gift.png'
 
 const products = [
-  'Packaging Boxes','Cartons','Bags','Visiting Cards','Gift Vouchers','Stickers',
-  'Invoice / Bill Books','Brochures','Paper Mats','Leaflets','Tags','Package Inserts',
-  'Letterheads','Files / Dockets','Takeaway Boxes','Calendars',
+  'Packaging Boxes','Cartons',' Gift Bags','Visiting Cards','Gift Vouchers','Stickers',
+  'Invoice / Bill Books','Brochures','Leaflets','Tags','Package Inserts',
+  'Letterheads','Files / Dockets','Takeaway Boxes','Calendars', 'Paper Mats','Certificates','Menus','Envelopes'
 ]
 
 // Each sample is tagged with one of the brand's four print colors (see the
@@ -31,7 +31,7 @@ export default function Products() {
         <div className="mb-8 md:mb-12 reveal">
           <SectionLabel>What We Print</SectionLabel>
           <h2 className="font-display text-2xl md:text-4xl text-navy leading-tight mb-3">A full range,<br />printed to order.</h2>
-          <p className="text-ink/70 text-sm md:text-base leading-relaxed max-w-xl">From packaging boxes to letterheads — if it's printed, there's a good chance we can make it.</p>
+          <p className="text-ink/70 text-sm md:text-base leading-relaxed max-w-xl">From packaging boxes to letterheads. If it's printed, there's a good chance we can make it.</p>
         </div>
 
         <div className="flex flex-wrap gap-2 md:gap-3 mb-10 md:mb-14 reveal">

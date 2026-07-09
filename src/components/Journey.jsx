@@ -219,37 +219,60 @@ export default function Journey() {
 
           {/* Header — title | paragraph + counter */}
           <div className="mb-6 md:mb-8 reveal flex flex-col md:flex-row md:items-center md:gap-10">
-            <div className="flex-none">
-              <SectionLabel>Our Journey</SectionLabel>
-              <h2 className="font-display text-3xl md:text-4xl text-navy leading-tight">
-                Fifty years,<br />six chapters.
-              </h2>
-            </div>
-            {/* Divider */}
-            <div className="hidden md:block w-[1.5px] self-stretch my-1" style={{ background: 'linear-gradient(to bottom, transparent, #0E1A3033, transparent)' }} />
-            {/* Paragraph + counter side by side */}
-            <div className="flex flex-row items-center gap-8 mt-3 md:mt-0">
-              <p className="text-ink/70 text-sm md:text-base leading-relaxed max-w-sm">
-                Operating from two fully-equipped plants in Mirigama, just an hour from Colombo, we leverage 50 years of experience to meet high-volume demand with exceptional precision.
-              </p>
-              {/* Animated 50+ counter */}
-              <div className="flex-none flex flex-col items-center justify-center leading-none">
+
+            {/* Title + 50+ sign side by side on mobile */}
+            <div className="flex-none flex items-start gap-4 md:block">
+              <div>
+                <SectionLabel>Our Journey</SectionLabel>
+                <h2 className="font-display text-3xl md:text-4xl text-navy leading-tight">
+                  Fifty years,<br />Six chapters.
+                </h2>
+              </div>
+              {/* 50+ MOBILE ONLY — adjust marginTop to move up/down */}
+              <div className="flex md:hidden flex-col items-center justify-center leading-none flex-none" style={{ marginTop: '22px' }}>
                 <span
                   className="font-display font-bold leading-none tabular-nums"
                   style={{
-                    fontSize: 'clamp(5rem, 8vw, 7.5rem)',
+                    fontSize: 'clamp(5.5rem, 16vw, 7rem)',
                     background: 'linear-gradient(135deg, #FFD200 30%, #FFA500 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 28px #FFD20088)',
+                    filter: 'drop-shadow(0 0 20px #FFD20088)',
                   }}>
                   {count}<span style={{ fontSize: '0.45em', verticalAlign: 'super', lineHeight: 0 }}>+</span>
                 </span>
-                <span className="font-mono text-xs tracking-[0.3em] uppercase font-semibold mt-1"
+                <span className="font-mono text-[11px] tracking-[0.3em] uppercase font-semibold mt-1"
                   style={{ color: '#FFD200', opacity: 0.75 }}>Years</span>
               </div>
             </div>
+
+            {/* Divider desktop only */}
+            <div className="hidden md:block w-[1.5px] self-stretch my-1" style={{ background: 'linear-gradient(to bottom, transparent, #0E1A3033, transparent)' }} />
+
+            {/* Paragraph */}
+            <p className="text-ink/70 text-sm md:text-base leading-relaxed max-w-sm mt-3 md:mt-0" style={{textAlign:'justify'}}>
+              Operating from two fully-equipped plants in Mirigama, just an hour from Colombo, we leverage 50 years of experience to meet high-volume demand with exceptional precision.
+            </p>
+
+            {/* 50+ DESKTOP ONLY — adjust marginLeft to move left/right */}
+            <div className="hidden md:flex flex-col items-center justify-center leading-none flex-none" style={{ marginLeft: '200px' }}>
+              <span
+                className="font-display font-bold leading-none tabular-nums"
+                style={{
+                  fontSize: 'clamp(5rem, 8vw, 7.5rem)',
+                  background: 'linear-gradient(135deg, #FFD200 30%, #FFA500 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  filter: 'drop-shadow(0 0 28px #FFD20088)',
+                }}>
+                {count}<span style={{ fontSize: '0.45em', verticalAlign: 'super', lineHeight: 0 }}>+</span>
+              </span>
+              <span className="font-mono text-xs tracking-[0.3em] uppercase font-semibold mt-1"
+                style={{ color: '#FFD200', opacity: 0.75 }}>Years</span>
+            </div>
+
           </div>
 
           {/* ── DESKTOP timeline ── */}

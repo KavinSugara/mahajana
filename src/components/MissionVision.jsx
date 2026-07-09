@@ -81,7 +81,7 @@ export default function MissionVision() {
               {/* Label */}
               <div className="flex items-center gap-3 mb-8 md:mb-10">
                 <span className="block w-8 h-[2px] bg-white/30 rounded-full" />
-                <span className="font-mono text-[11px] tracking-[0.28em] uppercase text-white/50">Mission · Vision · Goals</span>
+                <span className="font-mono text-[11px] tracking-[0.28em] uppercase text-white/50">Mission · Goals · Vision</span>
               </div>
 
               {/* Cards */}
@@ -96,7 +96,7 @@ export default function MissionVision() {
                         <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
                       </svg>
                     ),
-                    text: 'To empower businesses across every industry — from pharmaceuticals to apparel — with innovative, high-quality printing and packaging. With over five decades of expertise, we deliver value-added finishes like laminating, varnishing and foiling that turn your vision into a competitive market advantage.',
+                    text: 'To empower businesses across every industry from pharmaceuticals to apparel with innovative, high-quality printing and packaging. With over five decades of expertise, we deliver value-added finishes like laminating, varnishing and foiling that turn your vision into a competitive market advantage.',
                   },
                   {
                     accent: '#EC008C', accentClass: 'text-pmagenta', label: 'Our Goals',
@@ -109,7 +109,7 @@ export default function MissionVision() {
                       'Quality & Precision in every stage of production',
                       'Operational Excellence through modern machinery',
                       'Customer Loyalty via 100% on-time delivery',
-                      'Versatility across healthcare, retail & more',
+                      'Versatility across healthcare, retail, apparel & more',
                     ],
                   },
                   {
@@ -120,7 +120,7 @@ export default function MissionVision() {
                         <circle cx="12" cy="12" r="3"/>
                       </svg>
                     ),
-                    text: 'To be the premier printing and packaging partner — recognised for blending a rich heritage of craftsmanship with the cutting edge of modern technology, and remaining the most trusted name for brands that demand the best.',
+                    text: 'To be the premier printing and packaging partner recognised for blending a rich heritage of craftsmanship with the cutting edge of modern technology, and remaining the most trusted name for brands that demand the best.',
                   },
                   
                 ].map(({ accent, accentClass, label, icon, text, list }) => (

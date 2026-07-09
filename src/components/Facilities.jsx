@@ -1,12 +1,12 @@
 import { SectionLabel } from './UI'
 
 const processes = [
-  { num: '01', accent: '#EC008C', accentClass: 'text-pmagenta', title: 'Printing',     img: 'offset_printing.png',    desc: 'High-performance offset machines handle both small and large-scale runs with precision, consistency and speed.' },
-  { num: '02', accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Die Cutting',  img: 'diecutting.png',         desc: 'Precision cutting and embossing with flat-bed and cylinder die-cutting machines.' },
-  { num: '03', accent: '#FFD200', accentClass: 'text-pyellow',  title: 'Pasting',      img: 'offset_pasting.jpeg',    desc: 'High-speed pasting machines assemble folding cartons and boxes automatically.' },
-  { num: '04', accent: '#EC008C', accentClass: 'text-pmagenta', title: 'Lamination',   img: 'offset_lamination.jpeg', desc: 'A protective gloss or matte layer that adds durability and elevates the finish of your printed materials.' },
-  { num: '05', accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Foiling',      img: 'offset_foiling.png',     desc: 'Metallic foils add a reflective, eye-catching finish — ideal for luxury packaging.' },
-  { num: '06', accent: '#FFD200', accentClass: 'text-pyellow',  title: 'Design House', img: 'design.png',             desc: 'Fully equipped with Adobe Illustrator, Photoshop and InDesign — our team helps you design from scratch.' },
+  {  accent: '#EC008C', accentClass: 'text-pmagenta', title: 'Printing',     img: 'offset_printing.jpeg',    desc: 'High-performance offset machines handle both small and large-scale runs with precision, consistency and speed.' },
+  {  accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Die Cutting',  img: 'diecutting.png',         desc: 'Precision cutting and embossing with flat-bed and cylinder die-cutting machines.' },
+  {  accent: '#FFD200', accentClass: 'text-pyellow',  title: 'Pasting',      img: 'offset_pasting.jpg',    desc: 'High-speed pasting machines assemble folding cartons and boxes automatically.' },
+  {  accent: '#EC008C', accentClass: 'text-pmagenta', title: 'Lamination',   img: 'offset_lamination.jpeg', desc: 'A protective gloss or matte layer that adds durability and elevates the finish of your printed materials.' },
+  {  accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Foiling',      img: 'offset_foiling.jpg',     desc: 'Metallic foils add a reflective, eye-catching finish ideal for luxury packaging.' },
+  {  accent: '#FFD200', accentClass: 'text-pyellow',  title: 'Design House', img: 'design.png',             desc: 'Fully equipped with Adobe Illustrator, Photoshop and InDesign, our team helps you design from scratch.' },
 ]
 
 const logos = [
@@ -115,7 +115,7 @@ export default function Facilities() {
             <SectionLabel>In-House Capability</SectionLabel>
             <h2 className="font-display text-2xl md:text-4xl text-navy leading-tight mb-3">One Sheet of Paper. Infinite Possibilities. One roof.</h2>
             <p className="text-ink/70 text-sm md:text-base leading-relaxed max-w-xl">
-              From raw materials ro retail-ready product, we handle every single step of the journey in-house to guarantee unmatched quality.
+              From raw materials to final product, we handle every single step of the journey in-house to guarantee unmatched quality.
             </p>
           </div>
 
@@ -140,8 +140,7 @@ export default function Facilities() {
 
                 {/* Body */}
                 <div className="p-5 md:p-6">
-                  <span className={`font-mono text-[10px] tracking-[0.2em] ${accentClass}`}>PROCESS {num}</span>
-                  <h3 className="font-display text-base md:text-lg text-navy mt-1.5 mb-2">{title}</h3>
+                  <h3 className="font-body font-bold text-base md:text-lg text-navy mt-1.5 mb-2">{title}</h3>
                   <p className="text-sm text-ink/60 leading-relaxed">{desc}</p>
                 </div>
               </div>

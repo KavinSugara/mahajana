@@ -12,7 +12,7 @@ export default function About() {
               Reliability and excellence,<br />since 1974.
             </h2>
             <p className="text-ink/75 leading-relaxed text-base md:text-lg lg:text-xl">
-              At Mahajana Printers, our philosophy is rooted in the belief that reliability and excellence are the foundations of trust. We believe a company is only as good as its word, so we never compromise on our commitments. For over 50 years we've treated "quality" and "deadlines" with equal importance — a legacy of integrity that turns clients into long-term partners.
+              At Mahajana Printers, our philosophy is rooted in the belief that reliability and excellence are the foundations of trust. We believe a company is only as good as its word, so we never compromise on our commitments. For over 50 years we've treated "quality" and "deadlines" with equal importance, a legacy of integrity that turns clients into long-term partners.
             </p>
           </div>
 

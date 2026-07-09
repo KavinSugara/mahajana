@@ -83,17 +83,17 @@ export default function Hero() {
           </div>
 
           <h1
-            className={`font-display text-white leading-tight mb-3 text-[2.4rem] md:text-[4.6rem] hero-reveal${visible ? ' play' : ''}`}
+            className={`font-display text-white leading-[0.95] mb-4 text-[2.4rem] md:text-[4.6rem] hero-reveal${visible ? ' play' : ''}`}
             style={{ animationDelay: '0.6s' }}
           >
             Mahajana Printers
           </h1>
 
           <p
-            className={`text-white/60 text-base md:text-lg leading-relaxed mb-6 max-w-[340px] md:max-w-md hero-reveal${visible ? ' play' : ''}`}
+            className={`text-white/60 text-lg md:text-2xl leading-relaxed mb-6 max-w-[620px] md:max-w-md hero-reveal${visible ? ' play' : ''}`}
             style={{ animationDelay: '1.2s' }}
           >
-            Printing &amp; packaging excellence since 1974
+             Printing &amp; Packaging Excellence Since 1974
           </p>
 
           <div

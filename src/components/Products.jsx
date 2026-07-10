@@ -5,7 +5,7 @@ import { SectionLabel } from './UI'
 const packagingImg = '/packaging.png'
 const cartonImg = '/carton.png'
 const letterheadImg = '/letterhead.png'
-const giftImg = '/gift.png'
+const giftImg = '/gift.jpeg'
 
 const products = [
   'Packaging Boxes','Cartons',' Gift Bags','Visiting Cards','Gift Vouchers','Stickers',

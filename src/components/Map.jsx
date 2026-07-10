@@ -114,7 +114,7 @@ export default function Map() {
                   </div>
                   <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/40">Main Facility</span>
                 </div>
-                <p className="text-white text-sm leading-relaxed mb-1 font-medium">No. 21, Danowita Road</p>
+                <p className="text-white text-sm leading-relaxed mb-1 font-medium">No. 23, Danowita Road</p>
                 <p className="text-white/50 text-sm">Mirigama, Sri Lanka</p>
                 <a href="https://maps.google.com/?q=Mahajana+Printers,+Mirigama"
                   target="_blank" rel="noopener noreferrer"

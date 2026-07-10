@@ -230,7 +230,7 @@ export default function Journey() {
               <div>
                 <SectionLabel>Our Journey</SectionLabel>
                 <h2 className="font-display text-3xl md:text-4xl text-navy leading-tight">
-                  Fifty years,<br />Six chapters.
+                  Fifty years,<br />Seven chapters.
                 </h2>
               </div>
               {/* 50+ MOBILE ONLY — adjust marginTop to move up/down */}

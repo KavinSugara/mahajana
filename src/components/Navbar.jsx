@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react'
 
-const links = ['About', 'Facilities', 'Journey', 'Why Us', 'Products', 'Map']
+const links = [
+  { label: 'About', id: 'about' },
+  { label: 'Facilities', id: 'facilities' },
+  { label: 'Journey', id: 'journey' },
+  { label: 'Why Us', id: 'why-us' },
+  { label: 'Products', id: 'products' },
+  { label: 'Map', id: 'map' },
+  { label: 'Contact Us', id: 'contact' },
+]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -37,16 +45,16 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-8 text-white/80 text-[13.5px] font-semibold uppercase tracking-wide">
-          {links.map(l => (
+          {links.map(({ label, id }) => (
             <a
-              key={l}
-              href={`#${l.toLowerCase().replace(' ', '-')}`}
+              key={id}
+              href={`#${id}`}
               className="relative py-2 transition-colors duration-200 hover:text-white
                          after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0
                          after:bg-gradient-to-r after:from-[#00AEEF] after:via-[#EC008C] after:to-pyellow
                          after:transition-all after:duration-300 hover:after:w-full"
             >
-              {l}
+              {label}
             </a>
           ))}
         </nav>
@@ -94,17 +102,17 @@ export default function Navbar() {
                     transition-opacity duration-300
                     ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       >
-        {links.map((l, i) => (
+        {links.map(({ label, id }, i) => (
           <a
-            key={l}
-            href={`#${l.toLowerCase().replace(' ', '-')}`}
+            key={id}
+            href={`#${id}`}
             onClick={() => setOpen(false)}
             style={{ transitionDelay: open ? `${i * 40}ms` : '0ms' }}
             className={`text-white/90 text-xl font-semibold py-4 border-b border-white/10 transition-all duration-300
                         hover:text-pyellow active:scale-[0.98]
                         ${open ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-3'}`}
           >
-            {l}
+            {label}
           </a>
         ))}
         <a

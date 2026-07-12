@@ -22,7 +22,7 @@ export default function Map() {
         }
       `}</style>
 
-      <section id="clients" className="relative overflow-hidden py-14 md:py-28" style={{ background: '#0E1A30' }}>
+      <section id="map" className="relative overflow-hidden py-14 md:py-28" style={{ background: '#0E1A30' }}>
 
         {/* ── Background texture: scattered faint circles ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -152,7 +152,7 @@ export default function Map() {
                   </div>
                   <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/40">Contact</span>
                 </div>
-                <p className="text-white/80 text-sm">033 227 3230 &nbsp;|&nbsp; 033 495 0125</p>
+                <p className="text-white/80 text-sm">033 227 3230 &nbsp;|&nbsp; 077 132 4882</p>
                 <p className="text-white/50 text-xs mt-1">mahajanaprinters.lk@gmail.com</p>
               </div>
 

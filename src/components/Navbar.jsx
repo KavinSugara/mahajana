@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import QuoteButton from './QuoteButton'
 
 const links = ['About', 'Facilities', 'Journey', 'Why Us', 'Products', 'Map']
 
@@ -52,23 +53,8 @@ export default function Navbar() {
         </nav>
 
         {/* CTA + mobile toggle */}
-        <div className="flex items-center gap-3">
-          <a
-            href="https://wa.me/94771324882"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group hidden lg:inline-flex items-center gap-2 bg-pyellow text-navy font-bold text-sm
-                       px-6 py-2.5 rounded-full transition-all duration-300
-                       hover:gap-3 hover:shadow-[0_10px_24px_-6px_rgba(255,210,0,0.55)] hover:brightness-105
-                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pyellow/60 focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
-          >
-            Get A Quote
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-                 strokeLinecap="round" strokeLinejoin="round"
-                 className="transition-transform duration-300 group-hover:translate-x-0.5">
-              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
-            </svg>
-          </a>
+        <div className="flex items-center gap-2 md:gap-3">
+          <QuoteButton align="right" placement="below" />
 
           <button
             onClick={() => setOpen(o => !o)}
@@ -107,16 +93,9 @@ export default function Navbar() {
             {l}
           </a>
         ))}
-        <a
-          href="https://wa.me/94771324882"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => setOpen(false)}
-          className="mt-8 bg-pyellow text-navy font-bold text-base px-6 py-3.5 rounded-full text-center
-                     transition-transform duration-200 active:scale-95"
-        >
-          Get A Quote
-        </a>
+        <div className="mt-8">
+          <QuoteButton align="left" placement="above" fullWidth triggerClassName="!py-3.5" />
+        </div>
       </div>
     </header>
   )

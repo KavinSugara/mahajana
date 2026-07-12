@@ -17,10 +17,10 @@ const products = [
 // CMYK dots in the footer) — a small thread that ties this grid back to the
 // press itself: cyan / magenta / yellow / key(navy).
 const samples = [
-  { img: packagingImg, label: 'Packaging', sub: 'Boxes, cartons & retail packs', dot: '#00AEEF' },
-  { img: cartonImg, label: 'Cartons', sub: 'Mailer & product cartons', dot: '#EC008C' },
-  { img: letterheadImg, label: 'Stationery', sub: 'Letterheads & corporate ID', dot: '#FFD400' },
-  { img: giftImg, label: 'Gift & Retail', sub: 'Bags, tags & vouchers', dot: '#0A1A3C' },
+  { img: packagingImg, label: 'Packaging', sub: 'Boxes, cartons & retail packs' },
+  { img: cartonImg, label: 'Cartons', sub: 'Mailer & product cartons'},
+  { img: letterheadImg, label: 'Stationery', sub: 'Letterheads & corporate ID'},
+  { img: giftImg, label: 'Gift & Retail', sub: 'Bags, tags & vouchers'},
 ]
 
 export default function Products() {
@@ -62,11 +62,7 @@ export default function Products() {
               <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/0 to-navy/0" />
 
               {/* press-color dot: ties each sample back to the CMYK marks in the footer */}
-              <span
-                className="absolute top-3 right-3 h-2.5 w-2.5 rounded-full ring-2 ring-white/70"
-                style={{ backgroundColor: s.dot }}
-                aria-hidden="true"
-              />
+            
 
               <figcaption className="absolute inset-x-0 bottom-0 p-3 md:p-4">
                 <div className="text-white font-display text-sm md:text-base leading-tight">{s.label}</div>

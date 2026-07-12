@@ -7,6 +7,17 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Work Sans', sans-serif; }
 
+/* Fix for a Chrome-only GPU compositing artifact: faint hairline seams can appear
+   across sections that combine overflow:hidden with absolutely-positioned,
+   semi-transparent decorative elements. Forcing each such section onto its own
+   layer and hinting the border-radius avoids the seam. Not needed in Firefox/Edge. */
+.gpu-seam-fix {
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  isolation: isolate;
+}
+
 .nav-link { position: relative; }
 .nav-link::after {
   content: '';

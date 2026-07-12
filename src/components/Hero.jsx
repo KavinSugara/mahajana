@@ -4,6 +4,7 @@ import QuoteButton from "./QuoteButton";
 
 export default function Hero() {
   const [visible, setVisible] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
   const sectionRef = useRef(null);
   const wasVisible = useRef(false);
 
@@ -74,34 +75,39 @@ export default function Hero() {
           style={{ zIndex: 3 }}
         >
           <div
-            className={`flex gap-[4px] mb-4 hero-reveal${visible ? ' play' : ''}`}
-            style={{ animationDelay: '0.2s' }}
+            className="transition-transform duration-300 ease-out"
+            style={{ transform: quoteOpen ? 'translateY(-136px)' : 'translateY(0)' }}
           >
-            <span className="block w-5 h-[3px] bg-pcyan" />
-            <span className="block w-5 h-[3px] bg-pmagenta" />
-            <span className="block w-5 h-[3px] bg-pyellow" />
-            <span className="block w-5 h-[3px] bg-black" />
+            <div
+              className={`flex gap-[4px] mb-4 hero-reveal${visible ? ' play' : ''}`}
+              style={{ animationDelay: '0.2s' }}
+            >
+              <span className="block w-5 h-[3px] bg-pcyan" />
+              <span className="block w-5 h-[3px] bg-pmagenta" />
+              <span className="block w-5 h-[3px] bg-pyellow" />
+              <span className="block w-5 h-[3px] bg-black" />
+            </div>
+
+            <h1
+              className={`font-display text-white leading-[0.95] mb-4 text-[2.4rem] md:text-[4.6rem] hero-reveal${visible ? ' play' : ''}`}
+              style={{ animationDelay: '0.6s' }}
+            >
+              Mahajana<br className="md:hidden" /> Printers
+            </h1>
+
+            <p
+              className={`text-white/60 text-lg md:text-2xl leading-relaxed mb-6 max-w-[620px] md:max-w-md hero-reveal${visible ? ' play' : ''}`}
+              style={{ animationDelay: '1.2s' }}
+            >
+               Printing &amp; Packaging Excellence<br />Since 1974
+            </p>
           </div>
 
-          <h1
-            className={`font-display text-white leading-[0.95] mb-4 text-[2.4rem] md:text-[4.6rem] hero-reveal${visible ? ' play' : ''}`}
-            style={{ animationDelay: '0.6s' }}
-          >
-            Mahajana Printers
-          </h1>
-
-          <p
-            className={`text-white/60 text-lg md:text-2xl leading-relaxed mb-6 max-w-[620px] md:max-w-md hero-reveal${visible ? ' play' : ''}`}
-            style={{ animationDelay: '1.2s' }}
-          >
-             Printing &amp; Packaging Excellence<br />Since 1974
-          </p>
-
           <div
-            className={`flex gap-3 hero-reveal${visible ? ' play' : ''}`}
+            className={`flex items-center gap-3 hero-reveal${visible ? ' play' : ''}`}
             style={{ animationDelay: '1.8s' }}
           >
-            <QuoteButton align="left" placement="above" />
+            <QuoteButton align="left" placement="above" onOpenChange={setQuoteOpen} />
 
             <a href="#about" className="border border-white/30 text-white/80 text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors">
               Learn More

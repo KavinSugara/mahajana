@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { whatsappQuoteLink, mailtoQuoteLink } from "../lib/quote";
+import { whatsappQuoteLink, gmailQuoteLink, gmailAppQuoteLink } from "../lib/quote";
 
 /**
  * Shared "Get A Quote" button with a WhatsApp / Email dropdown.
@@ -17,14 +17,20 @@ export default function QuoteButton({
   fullWidth = false,
   triggerClassName = "",
   label = "Get A Quote",
+  onOpenChange,
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const menuRef = useRef(null);
 
+  const updateOpen = (value) => {
+    setDropdownOpen(value);
+    if (onOpenChange) onOpenChange(value);
+  };
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setDropdownOpen(false);
+        updateOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -39,6 +45,21 @@ export default function QuoteButton({
   const alignClass = fullWidth ? "left-0" : align === "right" ? "right-0" : "left-0";
   const originClass =
     (placement === "above" ? "bottom" : "top") + " " + (align === "right" ? "right" : "left");
+
+  const handleEmailClick = (e) => {
+    updateOpen(false);
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (!isIOS) return; // Android/desktop: let the normal href to gmailQuoteLink proceed
+
+    // iOS: try to launch the Gmail app; if it's not installed, nothing happens
+    // and we fall back to opening the Gmail web compose after a short delay.
+    e.preventDefault();
+    const fallback = setTimeout(() => {
+      window.open(gmailQuoteLink, "_blank");
+    }, 1500);
+    window.addEventListener("pagehide", () => clearTimeout(fallback), { once: true });
+    window.location.href = gmailAppQuoteLink;
+  };
 
   return (
     <div className={`relative ${fullWidth ? "w-full" : ""}`} ref={menuRef}>
@@ -56,7 +77,7 @@ export default function QuoteButton({
 
       <button
         type="button"
-        onClick={() => setDropdownOpen((o) => !o)}
+        onClick={() => updateOpen(!dropdownOpen)}
         aria-label="Choose contact method"
         aria-expanded={dropdownOpen}
         className={`flex items-stretch rounded-full bg-pyellow overflow-hidden hover:bg-white transition-colors ${
@@ -64,13 +85,13 @@ export default function QuoteButton({
         } ${triggerClassName}`}
       >
         <span
-          className={`text-navy font-semibold text-xs md:text-sm pl-4 pr-2.5 py-2 md:pl-5 md:pr-3 md:py-2.5 whitespace-nowrap ${
+          className={`text-navy font-semibold text-xs md:text-sm pl-4 pr-2.5 py-2.5 md:pl-5 md:pr-3 whitespace-nowrap ${
             fullWidth ? "flex-1 text-center" : ""
           }`}
         >
           {label}
         </span>
-        <span className="pl-1.5 pr-3 py-2 md:pl-2 md:pr-4 md:py-2.5 border-l border-navy/15 text-navy flex items-center">
+        <span className="pl-1.5 pr-3 py-2.5 md:pl-2 md:pr-4 border-l border-navy/15 text-navy flex items-center">
           <svg
             width="10"
             height="6"
@@ -94,7 +115,7 @@ export default function QuoteButton({
             href={whatsappQuoteLink}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => setDropdownOpen(false)}
+            onClick={() => updateOpen(false)}
             className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-navy hover:bg-navy/10 transition-colors"
           >
             <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366]/10 flex-none">
@@ -105,8 +126,10 @@ export default function QuoteButton({
             WhatsApp
           </a>
           <a
-            href={mailtoQuoteLink}
-            onClick={() => setDropdownOpen(false)}
+            href={gmailQuoteLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleEmailClick}
             className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-navy hover:bg-navy/10 transition-colors border-t border-navy/10"
           >
             <span className="flex items-center justify-center w-8 h-8 rounded-full bg-pcyan/10 flex-none">

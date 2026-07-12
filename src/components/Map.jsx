@@ -22,14 +22,14 @@ export default function Map() {
         }
       `}</style>
 
-      <section id="map" className="relative overflow-hidden py-14 md:py-28" style={{ background: '#0E1A30' }}>
+      <section id="map" className="relative overflow-hidden py-14 md:py-28" style={{ background: '#0E1A30', transform: 'translateZ(0)', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}>
 
         {/* ── Background texture: scattered faint circles ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          {/* Big blurred accent blobs */}
-          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: '#00AEEF' }} />
-          <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full opacity-10 blur-3xl" style={{ background: '#EC008C' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full opacity-5 blur-3xl" style={{ background: '#FFD200' }} />
+          {/* Big soft accent glows (radial-gradient instead of blur() to avoid GPU tiling seams) */}
+          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, #00AEEF 0%, rgba(0,174,239,0) 70%)' }} />
+          <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, #EC008C 0%, rgba(236,0,140,0) 70%)' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #FFD200 0%, rgba(255,210,0,0) 70%)' }} />
 
           {/* Dot scatter */}
           {[
@@ -45,10 +45,6 @@ export default function Map() {
             <div key={i} className="absolute rounded-full"
               style={{ top: d.top, left: d.left, width: d.s, height: d.s, background: d.c, opacity: d.o }} />
           ))}
-
-          {/* Subtle horizontal rule lines */}
-          <div className="absolute left-0 right-0" style={{ top: '30%', height: '1px', background: 'rgba(255,255,255,0.04)' }} />
-          <div className="absolute left-0 right-0" style={{ top: '65%', height: '1px', background: 'rgba(255,255,255,0.04)' }} />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-5 md:px-8">

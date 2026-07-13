@@ -66,7 +66,7 @@ export default function Map() {
                 <span style={{ color: '#FFD200' }}>in Mirigama.</span>
               </h2>
               <p className="text-white/45 text-sm md:text-base leading-relaxed max-w-xs md:text-right">
-                Just under an hour from Colombo — two plants, one commitment to quality.
+                Just under an hour from Colombo. Two plants, one commitment to quality.
               </p>
             </div>
 

@@ -22,8 +22,8 @@ export default function WhyUs() {
     <section id="why-us" className="bg-navy py-14 md:py-24">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
 
-        {/* Stats row — shown first on mobile */}
-        <div className="grid grid-cols-2 gap-3 md:gap-5 mb-10 md:hidden">
+        {/* Stats row — mobile only, no reveal animation */}
+        <div className="grid grid-cols-2 gap-3 mb-10 md:hidden">
           {stats.map(({ val, color, label }) => (
             <div key={label} className="bg-white/5 border border-white/10 rounded-2xl p-5">
               <span className={`font-display text-3xl ${color}`}>{val}</span>
@@ -33,7 +33,9 @@ export default function WhyUs() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-20">
-          <div className="reveal">
+
+          {/* Text — reveal only on md+ */}
+          <div className="md:reveal">
             <span className="flex items-center gap-2 text-white/60 font-mono text-xs tracking-[0.25em] uppercase mb-4">
               <RegMark />Why Choose Us
             </span>
@@ -49,7 +51,7 @@ export default function WhyUs() {
             </ul>
           </div>
 
-          {/* Stats — desktop only */}
+          {/* Stats — desktop only, with reveal */}
           <div className="hidden md:grid grid-cols-2 gap-5 content-center">
             {stats.map(({ val, color, label }) => (
               <div key={label} className="reveal bg-white/5 border border-white/10 rounded-2xl p-7">
@@ -58,8 +60,8 @@ export default function WhyUs() {
               </div>
             ))}
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   )

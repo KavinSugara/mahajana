@@ -68,6 +68,9 @@ export default function Map() {
               <p className="text-white/45 text-sm md:text-base leading-relaxed max-w-xs md:text-right">
                 Just under an hour from Colombo. Two plants, one commitment to quality.
               </p>
+               <p className="text-white/45 text-sm md:text-base leading-relaxed max-w-xs md:text-right">
+                Two plants, one commitment to quality.
+              </p>
             </div>
 
             {/* CMYK colour bar */}

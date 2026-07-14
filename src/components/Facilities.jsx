@@ -41,7 +41,11 @@ export default function Facilities() {
           box-shadow: 0 20px 48px rgba(14,26,48,0.11), 0 4px 12px rgba(14,26,48,0.06) !important;
         }
 
-        /* Image: very subtle zoom only */
+
+
+      
+
+        /* Image: very subtle zoom only ffff*/
         .fac-card-img {
           transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
         }

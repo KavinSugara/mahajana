@@ -16,7 +16,7 @@ export default function About() {
             </p>
           </div>
 
-          {/* Full image — no crop, natural height */}
+          {/* Full imagde — no crop, natural height */}
           <div className="reveal rounded-2xl md:rounded-3xl overflow-hidden">
             <img
               src="oldImg.jpeg"

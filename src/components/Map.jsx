@@ -60,15 +60,13 @@ export default function Map() {
               Our Location
             </span>
 
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <h2 className="font-display text-3xl md:text-5xl text-white leading-tight">
+            <div className="flex flex-col md:flex-row md:items-end md:gap-16 gap-3">
+              <h2 className="font-display text-3xl md:text-5xl text-white leading-tight flex-none">
                 Come find us<br />
                 <span style={{ color: '#FFD200' }}>in Mirigama.</span>
               </h2>
-              <p className="text-white/45 text-sm md:text-base leading-relaxed max-w-xs md:text-right">
-                Just under an hour from Colombo. Two plants, one commitment to quality.
-              </p>
-               <p className="text-white/45 text-sm md:text-base leading-relaxed max-w-xs md:text-right">
+              <p className="text-white/45 text-sm md:text-base leading-relaxed md:mb-2">
+                Just under an hour from Colombo.<br />
                 Two plants, one commitment to quality.
               </p>
             </div>

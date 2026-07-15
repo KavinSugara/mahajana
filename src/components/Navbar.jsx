@@ -17,8 +17,11 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll)
+    onScroll() // Initial check
+    
+    // Add { passive: true } to prevent scroll blocking
+    window.addEventListener('scroll', onScroll, { passive: true })
+    
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 

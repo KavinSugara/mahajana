@@ -23,11 +23,15 @@ export default function Facilities() {
     <>
       <style>{`
         @keyframes facFloat {
-          0%, 100% { transform: translate(-50%,-50%) translateY(0); }
-          50%       { transform: translate(-50%,-50%) translateY(-16px); }
+          0%, 100% { transform: translate(-50%,-50%) translateY(0) translateZ(0); }
+          50%       { transform: translate(-50%,-50%) translateY(-16px) translateZ(0); }
         }
+        
+        /* GPU Optimization: Force hardware acceleration */
         .fac-orb {
           animation: facFloat var(--dur,7s) ease-in-out var(--delay,0s) infinite;
+          will-change: transform, opacity;
+          transform: translateZ(0); 
         }
 
         /* Card: gentle lift + shadow bloom + accent border reveal */
@@ -35,22 +39,21 @@ export default function Facilities() {
           transition: transform 0.4s cubic-bezier(0.22,1,0.36,1),
                       box-shadow 0.4s cubic-bezier(0.22,1,0.36,1);
           border: 1px solid #e8e0d0;
+          will-change: transform, box-shadow;
+          transform: translateZ(0);
         }
         .fac-card:hover {
-          transform: translateY(-7px);
+          transform: translateY(-7px) translateZ(0);
           box-shadow: 0 20px 48px rgba(14,26,48,0.11), 0 4px 12px rgba(14,26,48,0.06) !important;
         }
 
-
-
-      
-
-        /* Image: very subtle zoom only ffff*/
+        /* Image: very subtle zoom only */
         .fac-card-img {
           transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+          will-change: transform;
         }
         .fac-card:hover .fac-card-img {
-          transform: scale(1.04);
+          transform: scale(1.04) translateZ(0);
         }
 
         /* Accent bar: grows from left on hover */
@@ -58,6 +61,7 @@ export default function Facilities() {
           transform-origin: left;
           transform: scaleX(1);
           transition: opacity 0.4s;
+          will-change: opacity;
         }
         .fac-card:hover .fac-bar {
           opacity: 0.9;
@@ -69,9 +73,11 @@ export default function Facilities() {
                       box-shadow 0.35s,
                       border-color 0.35s;
           border: 1px solid #e8e0d0;
+          will-change: transform;
+          transform: translateZ(0);
         }
         .fac-logo:hover {
-          transform: translateY(-4px);
+          transform: translateY(-4px) translateZ(0);
           box-shadow: 0 14px 32px rgba(14,26,48,0.09) !important;
           border-color: rgba(14,26,48,0.18);
         }
@@ -79,23 +85,22 @@ export default function Facilities() {
 
       <section id="facilities" className="relative py-14 md:py-24 overflow-hidden" style={{ background: '#F7F3EA' }}>
 
-        {/* Floating colour orbs */}
+        {/* Floating colour orbs - Swapped heavy blurs for fast radial gradients */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           {[
-            { top: '5%',  left: '5%',  size: 340, color: '#00AEEF', opacity: 0.09, delay: '0s',   dur: '7s'   },
-            { top: '10%', left: '82%', size: 280, color: '#EC008C', opacity: 0.08, delay: '1.5s', dur: '8.5s' },
-            { top: '50%', left: '90%', size: 300, color: '#FFD200', opacity: 0.09, delay: '0.8s', dur: '6.5s' },
-            { top: '65%', left: '3%',  size: 260, color: '#EC008C', opacity: 0.07, delay: '2s',   dur: '7.5s' },
-            { top: '85%', left: '52%', size: 220, color: '#00AEEF', opacity: 0.08, delay: '1s',   dur: '9s'   },
-            { top: '35%', left: '45%', size: 180, color: '#FFD200', opacity: 0.06, delay: '3s',   dur: '8s'   },
+            { top: '5%',  left: '5%',  size: 340, color: '#00AEEF', opacity: 0.15, delay: '0s',   dur: '7s'   },
+            { top: '10%', left: '82%', size: 280, color: '#EC008C', opacity: 0.12, delay: '1.5s', dur: '8.5s' },
+            { top: '50%', left: '90%', size: 300, color: '#FFD200', opacity: 0.15, delay: '0.8s', dur: '6.5s' },
+            { top: '65%', left: '3%',  size: 260, color: '#EC008C', opacity: 0.12, delay: '2s',   dur: '7.5s' },
+            { top: '85%', left: '52%', size: 220, color: '#00AEEF', opacity: 0.14, delay: '1s',   dur: '9s'   },
+            { top: '35%', left: '45%', size: 180, color: '#FFD200', opacity: 0.10, delay: '3s',   dur: '8s'   },
           ].map((d, i) => (
             <div key={i} className="fac-orb absolute rounded-full"
               style={{
                 top: d.top, left: d.left,
                 width: d.size, height: d.size,
-                background: d.color,
+                background: `radial-gradient(circle, ${d.color} 0%, transparent 70%)`,
                 opacity: d.opacity,
-                filter: 'blur(75px)',
                 transform: 'translate(-50%,-50%)',
                 '--delay': d.delay,
                 '--dur': d.dur,
@@ -137,7 +142,7 @@ export default function Facilities() {
                 {/* Image */}
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <div className="fac-bar absolute top-0 left-0 right-0 h-[3px] z-10" style={{ background: accent }} />
-                  <img src={img} alt={title} className="fac-card-img w-full h-full object-cover" />
+                  <img src={img} alt={title} className="fac-card-img w-full h-full object-cover" loading="lazy" />
                   <div className="absolute bottom-0 left-0 right-0 h-10 z-[2]"
                     style={{ background: 'linear-gradient(to bottom, transparent, #ffffff)' }} />
                 </div>
@@ -164,7 +169,7 @@ export default function Facilities() {
               {logos.map(({ src, name, scale }) => (
                 <div key={src} className="fac-logo flex-1 min-w-[140px] rounded-2xl bg-white flex items-center justify-center px-4 py-3 overflow-hidden"
                   style={{ boxShadow: '0 2px 12px rgba(14,26,48,0.06)', height: '160px' }}>
-                  <img src={src} alt={name} className="w-auto object-contain" style={{ maxHeight: '120px', maxWidth: '100%', transform: `scale(${scale || 1})` }} />
+                  <img src={src} alt={name} className="w-auto object-contain" style={{ maxHeight: '120px', maxWidth: '100%', transform: `scale(${scale || 1})` }} loading="lazy" />
                 </div>
               ))}
             </div>

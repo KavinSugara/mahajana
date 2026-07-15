@@ -149,8 +149,16 @@ export default function Map() {
                   </div>
                   <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/40">Contact</span>
                 </div>
-                <p className="text-white/80 text-sm">033 227 3230 &nbsp;|&nbsp; 077 132 4882</p>
-                <p className="text-white/50 text-xs mt-1">mahajanaprinters.lk@gmail.com</p>
+                <p className="text-white/80 text-sm">
+                  <a href="tel:0332273230" className="hover:text-pyellow transition-colors">033 227 3230</a> 
+                  &nbsp;|&nbsp; 
+                  <a href="tel:0771324882" className="hover:text-pyellow transition-colors">077 132 4882</a>
+                </p>
+                <p className="text-white/50 text-xs mt-1">
+                  <a href="mailto:mahajanaprinters.lk@gmail.com" className="hover:text-pyellow transition-colors">
+                    mahajanaprinters.lk@gmail.com
+                  </a>
+                </p>
               </div>
 
             </div>

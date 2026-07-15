@@ -12,9 +12,9 @@ const milestones = [
 ]
 
 const glows = [
-  { top: '15%', left: '5%',  size: 400, color: '#00AEEF', opacity: 0.06 },
-  { top: '70%', left: '90%', size: 360, color: '#EC008C', opacity: 0.06 },
-  { top: '45%', left: '50%', size: 300, color: '#FFD200', opacity: 0.04 },
+  { top: '15%', left: '5%',  size: 400, color: '#00AEEF', opacity: 0.12 },
+  { top: '70%', left: '90%', size: 360, color: '#EC008C', opacity: 0.12 },
+  { top: '45%', left: '50%', size: 300, color: '#FFD200', opacity: 0.08 },
 ]
 
 const dots = [
@@ -70,40 +70,46 @@ export default function Journey() {
     <>
       <style>{`
         @keyframes jrnFloat {
-          0%, 100% { transform: translateY(0); }
-          50%       { transform: translateY(-10px); }
+          0%, 100% { transform: translateY(0) translateZ(0); }
+          50%       { transform: translateY(-10px) translateZ(0); }
         }
         @keyframes lineGrow {
-          from { transform: scaleX(0); }
-          to   { transform: scaleX(1); }
+          from { transform: scaleX(0) translateZ(0); }
+          to   { transform: scaleX(1) translateZ(0); }
         }
         @keyframes nodePop {
-          from { opacity: 0; transform: scale(0.3); }
-          to   { opacity: 1; transform: scale(1); }
+          from { opacity: 0; transform: scale(0.3) translateZ(0); }
+          to   { opacity: 1; transform: scale(1) translateZ(0); }
         }
         @keyframes cardUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(28px) translateZ(0); }
+          to   { opacity: 1; transform: translateY(0) translateZ(0); }
         }
         @keyframes cardDown {
-          from { opacity: 0; transform: translateY(-28px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(-28px) translateZ(0); }
+          to   { opacity: 1; transform: translateY(0) translateZ(0); }
         }
         @keyframes tickGrow {
-          from { transform: scaleY(0); }
-          to   { transform: scaleY(1); }
+          from { transform: scaleY(0) translateZ(0); }
+          to   { transform: scaleY(1) translateZ(0); }
         }
         @keyframes yearFade {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(6px) translateZ(0); }
+          to   { opacity: 1; transform: translateY(0) translateZ(0); }
         }
         @keyframes glowPulse {
-          0%, 100% { opacity: 0.18; transform: scale(1); }
-          50%       { opacity: 0.38; transform: scale(1.15); }
+          0%, 100% { opacity: 0.18; transform: scale(1) translateZ(0); }
+          50%       { opacity: 0.38; transform: scale(1.15) translateZ(0); }
         }
         @keyframes shimmerSlide {
-          0%   { transform: translateX(-100%) skewX(-15deg); }
-          100% { transform: translateX(250%)  skewX(-15deg); }
+          0%   { transform: translateX(-100%) skewX(-15deg) translateZ(0); }
+          100% { transform: translateX(250%)  skewX(-15deg) translateZ(0); }
+        }
+
+        /* GPU Optimization */
+        .jrn-dot, .card-glow, .card-shimmer {
+          will-change: transform, opacity;
+          transform: translateZ(0);
         }
 
         .jrn-dot { animation: jrnFloat var(--dur,5s) ease-in-out var(--delay,0s) infinite; }
@@ -111,12 +117,13 @@ export default function Journey() {
         .jrn-line {
           transform-origin: left center;
           transform: scaleX(0);
+          will-change: transform;
         }
         .jrn-visible .jrn-line {
           animation: lineGrow 1.6s cubic-bezier(0.22,1,0.36,1) forwards 0.1s;
         }
 
-        .jrn-node { opacity: 0; }
+        .jrn-node { opacity: 0; will-change: transform, opacity; }
         .jrn-visible .jrn-node-1 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 0.35s; }
         .jrn-visible .jrn-node-2 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 0.58s; }
         .jrn-visible .jrn-node-3 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 0.81s; }
@@ -125,7 +132,7 @@ export default function Journey() {
         .jrn-visible .jrn-node-6 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 1.50s; }
         .jrn-visible .jrn-node-7 { animation: nodePop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards 1.73s; }
 
-        .jrn-tick { transform-origin: top center; transform: scaleY(0); }
+        .jrn-tick { transform-origin: top center; transform: scaleY(0); will-change: transform; }
         .jrn-visible .jrn-tick-1 { animation: tickGrow 0.3s ease forwards 0.48s; }
         .jrn-visible .jrn-tick-2 { animation: tickGrow 0.3s ease forwards 0.71s; }
         .jrn-visible .jrn-tick-3 { animation: tickGrow 0.3s ease forwards 0.94s; }
@@ -134,8 +141,8 @@ export default function Journey() {
         .jrn-visible .jrn-tick-6 { animation: tickGrow 0.3s ease forwards 1.63s; }
         .jrn-visible .jrn-tick-7 { animation: tickGrow 0.3s ease forwards 1.86s; }
 
-        .jrn-card-above { opacity: 0; }
-        .jrn-card-below { opacity: 0; }
+        .jrn-card-above { opacity: 0; will-change: transform, opacity; }
+        .jrn-card-below { opacity: 0; will-change: transform, opacity; }
         .jrn-visible .jrn-card-above-1 { animation: cardUp 0.55s cubic-bezier(0.22,1,0.36,1) forwards 0.55s; }
         .jrn-visible .jrn-card-above-3 { animation: cardUp 0.55s cubic-bezier(0.22,1,0.36,1) forwards 1.01s; }
         .jrn-visible .jrn-card-above-5 { animation: cardUp 0.55s cubic-bezier(0.22,1,0.36,1) forwards 1.47s; }
@@ -144,7 +151,7 @@ export default function Journey() {
         .jrn-visible .jrn-card-below-6 { animation: cardDown 0.55s cubic-bezier(0.22,1,0.36,1) forwards 1.70s; }
         .jrn-visible .jrn-card-above-7 { animation: cardUp 0.55s cubic-bezier(0.22,1,0.36,1) forwards 1.93s; }
 
-        .jrn-year { opacity: 0; }
+        .jrn-year { opacity: 0; will-change: transform, opacity; }
         .jrn-visible .jrn-year-1 { animation: yearFade 0.4s ease forwards 0.42s; }
         .jrn-visible .jrn-year-2 { animation: yearFade 0.4s ease forwards 0.65s; }
         .jrn-visible .jrn-year-3 { animation: yearFade 0.4s ease forwards 0.88s; }
@@ -159,9 +166,11 @@ export default function Journey() {
                       box-shadow 0.35s,
                       border-color 0.35s;
           border: 1.5px solid transparent;
+          will-change: transform, box-shadow;
+          transform: translateZ(0);
         }
         .jrn-card:hover {
-          transform: translateY(-10px) scale(1.03);
+          transform: translateY(-10px) scale(1.03) translateZ(0);
         }
         .jrn-card .card-glow {
           transition: opacity 0.35s, transform 0.35s;
@@ -202,9 +211,10 @@ export default function Journey() {
 
         {/* Background */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          {/* Swapped heavy blur for radial-gradient */}
           {glows.map((g, i) => (
             <div key={i} className="absolute rounded-full"
-              style={{ top: g.top, left: g.left, width: g.size, height: g.size, background: g.color, opacity: g.opacity, filter: 'blur(90px)', transform: 'translate(-50%,-50%)' }} />
+              style={{ top: g.top, left: g.left, width: g.size, height: g.size, background: `radial-gradient(circle, ${g.color} 0%, transparent 70%)`, opacity: g.opacity, transform: 'translate(-50%,-50%) translateZ(0)' }} />
           ))}
           {dots.map((d, i) => (
             <div key={i} className="jrn-dot absolute rounded-full"
@@ -309,10 +319,10 @@ export default function Journey() {
                           {/* Top accent bar */}
                           <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: m.accent }} />
 
-                          {/* Glow blob */}
+                          {/* Glow blob - swapped blur for radial gradient */}
                           <div
-                            className="card-glow absolute -top-8 -right-8 w-36 h-36 rounded-full blur-3xl"
-                            style={{ background: m.accent, opacity: hovered === i ? 0.28 : 0.14 }}
+                            className="card-glow absolute -top-8 -right-8 w-36 h-36 rounded-full"
+                            style={{ background: `radial-gradient(circle, ${m.accent} 0%, transparent 70%)`, opacity: hovered === i ? 0.35 : 0.20 }}
                           />
 
                           {/* Ghost year */}
@@ -376,7 +386,7 @@ export default function Journey() {
                               color: '#0E1A30',
                               boxShadow: `0 0 0 ${hovered === i ? 6 : 4}px ${m.accent}44`,
                               transition: 'box-shadow 0.3s',
-                              transform: hovered === i ? 'scale(1.15)' : 'scale(1)',
+                              transform: hovered === i ? 'scale(1.15) translateZ(0)' : 'scale(1) translateZ(0)',
                               transitionProperty: 'transform, box-shadow',
                               transitionDuration: '0.3s',
                             }}>
@@ -422,8 +432,8 @@ export default function Journey() {
                         >
                           <div className="card-shimmer" />
                           <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: m.accent }} />
-                          <div className="card-glow absolute -top-8 -right-8 w-36 h-36 rounded-full blur-3xl"
-                            style={{ background: m.accent, opacity: hovered === i ? 0.28 : 0.14 }} />
+                          <div className="card-glow absolute -top-8 -right-8 w-36 h-36 rounded-full"
+                            style={{ background: `radial-gradient(circle, ${m.accent} 0%, transparent 70%)`, opacity: hovered === i ? 0.35 : 0.20 }} />
                           <div className="absolute bottom-2 right-3 font-display font-bold leading-none select-none pointer-events-none"
                             style={{ fontSize: 44, color: m.accent, opacity: hovered === i ? 0.13 : 0.07, transition: 'opacity 0.35s' }}>
                             {m.year}
@@ -480,9 +490,9 @@ export default function Journey() {
                     {/* Top accent bar */}
                     <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: m.accent }} />
 
-                    {/* Glow blob */}
-                    <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full blur-2xl"
-                      style={{ background: m.accent, opacity: 0.15 }} />
+                    {/* Glow blob - Swapped blur for radial-gradient */}
+                    <div className="card-glow absolute -top-6 -right-6 w-32 h-32 rounded-full"
+                      style={{ background: `radial-gradient(circle, ${m.accent} 0%, transparent 70%)`, opacity: 0.25 }} />
 
                     {/* Ghost year watermark */}
                     <div className="absolute bottom-1 right-3 font-display font-bold leading-none select-none pointer-events-none"

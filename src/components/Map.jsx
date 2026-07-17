@@ -1,4 +1,8 @@
+import { useState } from 'react'
+
 export default function Map() {
+  const [mapActive, setMapActive] = useState(false)
+
   return (
     <>
       <style>{`
@@ -22,7 +26,7 @@ export default function Map() {
         }
       `}</style>
 
-      <section id="map" className="relative overflow-hidden py-14 md:py-28" style={{ background: '#0E1A30', transform: 'translateZ(0)', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}>
+      <section id="map" className="relative overflow-hidden py-14 md:py-28" style={{ background: '#0E1A30', transform: 'translateZ(0)', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', contain: 'layout style paint' }}>
 
         {/* ── Background texture: scattered faint circles ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -89,11 +93,31 @@ export default function Map() {
                 title="Mahajana Printers Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3!2d80.1288958!3d7.2480409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae31e776758f291%3A0x54944b426b7bede!2sMahajana%20Printers!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"
                 width="100%" height="100%"
-                style={{ border: 0, minHeight: '440px', display: 'block', filter: 'saturate(0.9) contrast(1.05)' }}
+                style={{ border: 0, minHeight: '440px', display: 'block', filter: 'saturate(0.9) contrast(1.05)', pointerEvents: mapActive ? 'auto' : 'none' }}
                 allowFullScreen="" loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
-      
+
+              {/* Tap-to-activate overlay: stops the iframe from hijacking scroll gestures on mobile.
+                  Touches land on this div (which does nothing but listen for a tap), so the page
+                  scrolls normally. One tap/click hands control to the map for panning & zooming. */}
+              {!mapActive && (
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setMapActive(true)}
+                  onTouchEnd={() => setMapActive(true)}
+                  className="absolute inset-0 flex items-end justify-center cursor-pointer"
+                  style={{ background: 'transparent' }}
+                >
+                  <span
+                    className="mb-4 px-4 py-2 rounded-full text-white text-xs font-semibold pointer-events-none"
+                    style={{ background: 'rgba(14,26,48,0.75)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.15)' }}
+                  >
+                    Tap to interact with map
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Info panel */}

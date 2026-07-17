@@ -3,12 +3,12 @@ import { SectionLabel } from './UI'
 // These live in /public, so Vite serves them straight from the root —
 // no import needed, just reference the path as a string.
 const packagingImg = '/packaging.png'
-const cartonImg = '/carton.png'
-const letterheadImg = '/letterhead.png'
-const giftImg = '/gift.jpeg'
+const cartonImg = '/calendar.png'
+const letterheadImg = '/documents.jpeg'
+const giftImg = '/bags.png'
 
 const products = [
-  'Packaging Boxes','Cartons',' Gift Bags','Visiting Cards','Gift Vouchers','Stickers',
+  'Packaging Boxes','Calendars',' Gift Bags','Visiting Cards','Gift Vouchers','Stickers',
   'Invoice / Bill Books','Brochures','Leaflets','Tags','Package Inserts',
   'Letterheads','Files / Dockets','Takeaway Boxes','Calendars', 'Paper Mats','Certificates','Menus','Envelopes'
 ]
@@ -18,9 +18,9 @@ const products = [
 // press itself: cyan / magenta / yellow / key(navy).
 const samples = [
   { img: packagingImg, label: 'Packaging', sub: 'Boxes, cartons & retail packs' },
-  { img: cartonImg, label: 'Cartons', sub: 'Mailer & product cartons'},
-  { img: letterheadImg, label: 'Stationery', sub: 'Letterheads & corporate ID'},
-  { img: giftImg, label: 'Gift & Retail', sub: 'Bags, tags & vouchers'},
+  { img: cartonImg, label: 'Calendars', sub: 'Mailer & product cartons'},
+  { img: letterheadImg, label: 'Documents', sub: 'Letterheads & corporate ID', fit: 'contain', pad: 'p-0.5 md:p-1.5'},
+  { img: giftImg, label: 'Bags', sub: 'Bags, tags & vouchers', fit: 'contain'},
 ]
 
 export default function Products() {
@@ -54,7 +54,11 @@ export default function Products() {
               <img
                 src={s.img}
                 alt={s.label}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                className={
+                  s.fit === 'contain'
+                    ? `absolute inset-0 w-full h-full object-contain ${s.pad || 'p-3 md:p-5'} transition-transform duration-500 ease-out group-hover:scale-[1.06]`
+                    : "absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                }
                 loading="lazy"
               />
 

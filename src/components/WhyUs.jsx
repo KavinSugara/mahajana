@@ -19,7 +19,11 @@ const stats = [
 
 export default function WhyUs() {
   return (
-    <section id="why-us" className="bg-navy py-14 md:py-24">
+    <section
+      id="why-us"
+      className="bg-navy py-14 md:py-24"
+      style={{ contain: 'layout style paint', contentVisibility: 'auto', containIntrinsicSize: '1px 900px', transform: 'translateZ(0)' }}
+    >
       <div className="max-w-7xl mx-auto px-5 md:px-8">
 
         {/* Stats row — mobile only, no reveal animation */}

@@ -26,7 +26,7 @@ export default function Map() {
         }
       `}</style>
 
-      <section id="map" className="relative overflow-hidden py-14 md:py-28" style={{ background: '#0E1A30', transform: 'translateZ(0)', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', contain: 'layout style paint' }}>
+      <section id="map" className="relative overflow-hidden py-14 md:py-28" style={{ background: '#0E1A30', transform: 'translateZ(0)', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}>
 
         {/* ── Background texture: scattered faint circles ── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -94,7 +94,7 @@ export default function Map() {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3!2d80.1288958!3d7.2480409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae31e776758f291%3A0x54944b426b7bede!2sMahajana%20Printers!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"
                 width="100%" height="100%"
                 style={{ border: 0, minHeight: '440px', display: 'block', filter: 'saturate(0.9) contrast(1.05)', pointerEvents: mapActive ? 'auto' : 'none' }}
-                allowFullScreen="" loading="lazy"
+                allowFullScreen="" loading="eager"
                 referrerPolicy="no-referrer-when-downgrade"
               />
 

@@ -18,8 +18,8 @@ const products = [
 // press itself: cyan / magenta / yellow / key(navy).
 const samples = [
   { img: packagingImg, label: 'Packaging', sub: 'Boxes, cartons & retail packs' },
-  { img: cartonImg, label: 'Calendars', sub: 'Mailer & product cartons'},
-  { img: letterheadImg, label: 'Documents', sub: 'Letterheads & corporate ID', fit: 'contain', pad: 'p-0.5 md:p-1.5'},
+  { img: cartonImg, label: 'Calendars', sub: 'All types of calendars'},
+  { img: letterheadImg, label: 'Documents', sub: 'All types of office documents', fit: 'contain', pad: 'p-0.5 md:p-1.5'},
   { img: giftImg, label: 'Bags', sub: 'Bags, tags & vouchers', fit: 'contain'},
 ]
 

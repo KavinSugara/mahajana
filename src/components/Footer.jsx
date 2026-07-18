@@ -15,8 +15,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 pb-10 md:pb-14 border-b border-white/10">
 
             <div>
-              <div className="inline-block rounded-xl px-4 py-2 mb-5">
-                <img src="logo.png" alt="Mahajana Printers" className="h-10 w-auto" />
+              {/* Logo scaled up to 320px (mobile) and 420px (desktop) */}
+              <div className="inline-block mb-6 w-full">
+                <img src="logo.png" alt="Mahajana Printers" className="w-[320px] md:w-[420px] max-w-full h-auto object-contain" />
               </div>
               <p className="text-white/60 text-sm leading-relaxed max-w-xs">
                 Your trusted printing and packaging service provider with over 50 years of experience, offering high-quality, customised solutions.

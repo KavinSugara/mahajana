@@ -22,7 +22,7 @@ export default function WhyUs() {
     <section
       id="why-us"
       className="bg-navy py-14 md:py-24"
-      style={{ contain: 'layout style paint', contentVisibility: 'auto', containIntrinsicSize: '1px 900px', transform: 'translateZ(0)' }}
+      style={{ transform: 'translateZ(0)', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8">
 

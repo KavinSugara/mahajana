@@ -7,10 +7,11 @@ const cartonImg = '/calendar.png'
 const letterheadImg = '/documents.jpeg'
 const giftImg = '/bags.png'
 
+// Removed the duplicate 'Calendars' and fixed the leading space in 'Gift Bags'
 const products = [
-  'Packaging Boxes','Calendars',' Gift Bags','Visiting Cards','Gift Vouchers','Stickers',
+  'Packaging Boxes','Calendars','Gift Bags','Visiting Cards','Gift Vouchers','Stickers',
   'Invoice / Bill Books','Brochures','Leaflets','Tags','Package Inserts',
-  'Letterheads','Files / Dockets','Takeaway Boxes','Calendars', 'Paper Mats','Certificates','Menus','Envelopes'
+  'Letterheads','Files / Dockets','Takeaway Boxes','Paper Mats','Certificates','Menus','Envelopes'
 ]
 
 // Each sample is tagged with one of the brand's four print colors (see the

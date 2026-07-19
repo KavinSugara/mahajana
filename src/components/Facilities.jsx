@@ -2,7 +2,7 @@ import { SectionLabel } from './UI'
 
 const processes = [
   {  accent: '#EC008C', accentClass: 'text-pmagenta', title: 'Printing',     img: 'offset_printing.jpeg',    desc: 'High-performance offset machines handle both small and large-scale runs with precision, consistency and speed.' },
-  {  accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Die Cutting',  img: 'diecutting.png',         desc: 'Precision cutting and embossing with flat-bed and cylinder die-cutting machines.' },
+  {  accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Die Cutting',  img: 'diecutting.jpg',         desc: 'Precision cutting and embossing with flat-bed and cylinder die-cutting machines.' },
   {  accent: '#FFD200', accentClass: 'text-pyellow',  title: 'Pasting',      img: 'offset_pasting.jpg',    desc: 'High-speed pasting machines assemble folding cartons and boxes automatically.' },
   {  accent: '#EC008C', accentClass: 'text-pmagenta', title: 'Lamination',   img: 'offset_lamination.jpeg', desc: 'A protective gloss or matte layer that adds durability and elevates the finish of your printed materials.' },
   {  accent: '#00AEEF', accentClass: 'text-pcyan',    title: 'Foiling',      img: 'offset_foiling.jpg',     desc: 'Metallic foils add a reflective, eye-catching finish ideal for luxury packaging.' },

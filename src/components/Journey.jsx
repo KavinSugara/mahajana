@@ -39,35 +39,50 @@ export default function Journey() {
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
+
+    // Mobile gets a one-time reveal (no replay) — this is the version that's
+    // glitch-free on phones. Desktop gets a repeatable reveal: it resets
+    // only once the section is fully off-screen (so nothing pops while still
+    // visible) plus a short grace period to ignore boundary jitter, so it
+    // can safely replay every time you scroll back to it.
+    const isMobile = window.matchMedia('(max-width: 767px)').matches
+    let hideTimer = null
+
+    const runReveal = () => {
+      setVisible(true)
+      setCount(0)
+      let start = null
+      const duration = 1400
+      const target = 50
+      const step = (ts) => {
+        if (!start) start = ts
+        const progress = Math.min((ts - start) / duration, 1)
+        // Ease out expo
+        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
+        setCount(Math.floor(eased * target))
+        if (progress < 1) requestAnimationFrame(step)
+        else setCount(target)
+      }
+      requestAnimationFrame(step)
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return
-        // Play the reveal + counter once, then stop watching. Previously this
-        // also fired setVisible(false) on exit, which instantly snapped every
-        // node/card/tick back to opacity:0 the moment Journey scrolled out of
-        // view (i.e. exactly when scrolling into Why Us) — that abrupt reset,
-        // plus it re-firing repeatedly right at the 10% visibility threshold
-        // whenever scrolling paused there, was the "glitch."
-        setVisible(true)
-        setCount(0)
-        let start = null
-        const duration = 1400
-        const target = 50
-        const step = (ts) => {
-          if (!start) start = ts
-          const progress = Math.min((ts - start) / duration, 1)
-          // Ease out expo
-          const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
-          setCount(Math.floor(eased * target))
-          if (progress < 1) requestAnimationFrame(step)
-          else setCount(target)
+        if (entry.isIntersecting) {
+          if (hideTimer) { clearTimeout(hideTimer); hideTimer = null }
+          runReveal()
+          if (isMobile) observer.unobserve(el)
+        } else if (!isMobile) {
+          hideTimer = setTimeout(() => setVisible(false), 400)
         }
-        requestAnimationFrame(step)
-        observer.unobserve(el)
       },
-      { threshold: 0.1 }
+      { threshold: isMobile ? 0.1 : 0 }
     )
     observer.observe(el)
+    return () => {
+      observer.disconnect()
+      if (hideTimer) clearTimeout(hideTimer)
+    }
     return () => observer.disconnect()
   }, [])
 

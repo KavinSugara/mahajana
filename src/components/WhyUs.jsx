@@ -4,7 +4,7 @@ const reasons = [
   'Over 50 years of trusted service',
   'Complete in-house production',
   'Customised finishes: lamination, varnishing, foiling & more',
-  "Skilled team, many with 20+ years experience",
+  "Skilled team, many with 20+ years of experience",
   'Serving industries from healthcare to hospitality',
   'Long-term client relationships',
   'Free nationwide delivery',

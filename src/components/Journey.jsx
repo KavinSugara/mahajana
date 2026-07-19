@@ -39,45 +39,36 @@ export default function Journey() {
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
-    let hideTimer = null
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          // Cancel any pending "hide" and replay the reveal + counter.
-          if (hideTimer) { clearTimeout(hideTimer); hideTimer = null }
-          setVisible(true)
-          setCount(0)
-          let start = null
-          const duration = 1400
-          const target = 50
-          const step = (ts) => {
-            if (!start) start = ts
-            const progress = Math.min((ts - start) / duration, 1)
-            // Ease out expo
-            const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
-            setCount(Math.floor(eased * target))
-            if (progress < 1) requestAnimationFrame(step)
-            else setCount(target)
-          }
-          requestAnimationFrame(step)
-        } else {
-          // Only reset (so it can replay next time) after it's been fully
-          // out of view for a beat. threshold:0 already means this only
-          // fires once there's zero overlap left — i.e. it's already off
-          // screen, so resetting here is invisible to the user, not a pop.
-          // The extra delay just absorbs momentum-scroll jitter right at
-          // the edge so it doesn't rapid-fire on/off.
-          hideTimer = setTimeout(() => setVisible(false), 400)
+        if (!entry.isIntersecting) return
+        // Play the reveal + counter once, then stop watching. Previously this
+        // also fired setVisible(false) on exit, which instantly snapped every
+        // node/card/tick back to opacity:0 the moment Journey scrolled out of
+        // view (i.e. exactly when scrolling into Why Us) — that abrupt reset,
+        // plus it re-firing repeatedly right at the 10% visibility threshold
+        // whenever scrolling paused there, was the "glitch."
+        setVisible(true)
+        setCount(0)
+        let start = null
+        const duration = 1400
+        const target = 50
+        const step = (ts) => {
+          if (!start) start = ts
+          const progress = Math.min((ts - start) / duration, 1)
+          // Ease out expo
+          const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
+          setCount(Math.floor(eased * target))
+          if (progress < 1) requestAnimationFrame(step)
+          else setCount(target)
         }
+        requestAnimationFrame(step)
+        observer.unobserve(el)
       },
-      { threshold: 0 }
+      { threshold: 0.1 }
     )
     observer.observe(el)
-    return () => {
-      observer.disconnect()
-      if (hideTimer) clearTimeout(hideTimer)
-    }
+    return () => observer.disconnect()
   }, [])
 
   return (
